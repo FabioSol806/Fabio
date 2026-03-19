@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="B&M Cash Flow">
+<title>B&M Cash Flow 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,sans-serif;background:#f5f5f7;color:#1c1c1e;font-size:15px}
+a{color:inherit;text-decoration:none}
+
+/* HEADER */
+.top{background:#fff;padding:12px 14px;border-bottom:1px solid #e0e0e0;position:sticky;top:0;z-index:99}
+.top h1{font-size:16px;font-weight:700}
+.top p{font-size:11px;color:#6e6e73;margin-top:1px}
+.top-btns{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.hbtn{padding:7px 12px;border-radius:20px;border:none;font-size:12px;font-weight:600;cursor:pointer;background:#f0f0f5;color:#1c1c1e}
+.hbtn.blue{background:#e5f0ff;color:#007aff}
+.hbtn.green{background:#e8f8ee;color:#1D9E75}
+.hbtn.red{background:#fff0ef;color:#E24B4A}
+
+/* NAV */
+.nav{display:flex;background:#fff;border-bottom:2px solid #e0e0e0;overflow-x:auto}
+.ntab{flex-shrink:0;padding:10px 14px;border:none;background:none;font-size:13px;font-weight:500;color:#6e6e73;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.ntab.on{color:#007aff;border-bottom-color:#007aff}
+
+/* MAIN */
+.main{padding:12px;max-width:700px;margin:0 auto;padding-bottom:40px}
+
+/* SEZIONI */
+.sec{display:none}.sec.on{display:block}
+
+/* CARDS */
+.card{background:#fff;border-radius:12px;margin-bottom:12px;overflow:hidden;border:1px solid #e8e8e8}
+.card-h{padding:10px 14px;font-size:11px;font-weight:700;color:#6e6e73;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #f0f0f0;background:#fafafa}
+
+/* GRIGLIA DATI */
+.dati-grid{display:grid;grid-template-columns:1fr 1fr}
+.dati-cell{padding:9px 14px;border-bottom:1px solid #f0f0f0;border-right:1px solid #f0f0f0;font-size:13px}
+.dati-cell:nth-child(even){border-right:none}
+.dati-cell:last-child,.dati-cell:nth-last-child(2){border-bottom:none}
+.dati-lbl{font-size:11px;color:#6e6e73;display:block;margin-bottom:2px}
+
+/* TIP */
+.tip{background:#fff4e0;border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:12px;color:#7a4400;line-height:1.6}
+
+/* PROP CARD */
+.prop{border-radius:12px;margin-bottom:12px;padding:14px}
+.prop.b{background:linear-gradient(135deg,#dceeff,#eef6ff)}
+.prop.m{background:linear-gradient(135deg,#e5e5ff,#f0f0ff)}
+.prop-t{font-size:15px;font-weight:700;margin-bottom:2px}
+.prop-s{font-size:11px;color:#6e6e73;margin-bottom:12px}
+.prow{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.07)}
+.prow:last-child{border-bottom:none}
+.plbl{font-size:13px;color:#6e6e73}
+.pinp{border:1px solid rgba(0,0,0,0.15);border-radius:8px;padding:6px 10px;font-size:15px;font-weight:700;background:rgba(255,255,255,0.8);width:120px;text-align:right;font-family:inherit}
+.pval{font-size:16px;font-weight:700}
+.obar{height:6px;background:rgba(0,0,0,0.08);border-radius:3px;margin-top:10px;overflow:hidden}
+.ofill{height:100%;border-radius:3px;transition:width .3s}
+
+/* METRICHE */
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.mc{background:#fff;border-radius:12px;padding:13px;border:1px solid #e8e8e8}
+.mc-l{font-size:11px;color:#6e6e73;margin-bottom:4px;min-height:28px;display:flex;align-items:flex-end;line-height:1.3}
+.mc-v{font-size:20px;font-weight:700;line-height:1}
+.mc-s{font-size:11px;color:#aeaeb2;margin-top:3px}
+
+/* GRAFICO CSS — barre orizzontali semplici */
+.chart-wrap{padding:12px 14px}
+.chart-row{display:flex;align-items:center;margin-bottom:8px;gap:8px}
+.chart-lbl{font-size:11px;color:#6e6e73;width:26px;text-align:right;flex-shrink:0}
+.chart-bars{flex:1;display:flex;gap:2px;height:20px}
+.bar-e{border-radius:2px 0 0 2px;height:100%;min-width:2px;display:flex;align-items:center}
+.bar-m{height:100%;min-width:2px}
+.bar-u{border-radius:0 2px 2px 0;height:100%;min-width:2px}
+.bar-solo{border-radius:3px;height:100%;min-width:2px}
+.chart-val{font-size:10px;color:#6e6e73;width:36px;text-align:right;flex-shrink:0}
+.chart-legend{display:flex;gap:12px;margin-bottom:8px;font-size:11px;color:#6e6e73;flex-wrap:wrap}
+.leg{display:flex;align-items:center;gap:4px}
+.leg-sq{width:10px;height:10px;border-radius:2px}
+
+/* SALDO LINE — linea orizzontale CSS */
+.saldo-chart{padding:12px 14px}
+.saldo-row{display:flex;align-items:center;margin-bottom:6px;gap:8px}
+.saldo-lbl{font-size:10px;color:#6e6e73;width:26px;text-align:right;flex-shrink:0}
+.saldo-track{flex:1;background:#f0f0f0;border-radius:3px;height:14px;position:relative;overflow:visible}
+.saldo-bar{height:100%;border-radius:3px;min-width:3px;position:absolute;left:0;top:0}
+.saldo-zero{position:absolute;top:-3px;bottom:-3px;width:2px;background:#ccc}
+.saldo-val{font-size:10px;font-weight:600;width:40px;text-align:right;flex-shrink:0}
+
+/* COLORI */
+.pos{color:#1D9E75}.neg{color:#E24B4A}.warn{color:#ff9500}.neu{color:#1c1c1e}
+
+/* SEG */
+.seg{display:flex;background:#f0f0f5;border-radius:8px;padding:2px;margin-bottom:12px}
+.stab{flex:1;padding:8px 4px;border:none;background:none;border-radius:6px;font-size:13px;font-weight:500;color:#6e6e73;cursor:pointer;font-family:inherit}
+.stab.on{background:#fff;color:#1c1c1e;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+
+/* LISTA SPESE */
+.lrow{display:flex;align-items:center;padding:12px 14px;border-bottom:1px solid #f0f0f0;cursor:pointer}
+.lrow:last-child{border-bottom:none}
+.lrow:active{background:#f8f8f8}
+.ll{flex:1}
+.ll-t{font-size:14px}
+.ll-s{font-size:12px;color:#6e6e73;margin-top:2px}
+.lr{text-align:right;flex-shrink:0}
+.lr-v{font-size:14px;font-weight:600}
+.lr-p{font-size:11px;color:#aeaeb2}
+.cat-l{padding:6px 14px;font-size:11px;font-weight:700;color:#6e6e73;text-transform:uppercase;background:#f8f8f8}
+.tot-row{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#f5f5f7;font-weight:700}
+.add-btn{display:block;width:100%;padding:12px;border:none;background:none;font-size:13px;color:#007aff;font-weight:600;cursor:pointer;text-align:center;font-family:inherit}
+
+/* STANZE */
+.sbl{padding:12px 14px;border-bottom:1px solid #f0f0f0}
+.sbl:last-child{border-bottom:none}
+.sr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sid{font-size:14px;font-weight:700;width:28px}
+.sinf{flex:1}
+.sn{font-size:14px;font-weight:500}
+.sd{font-size:12px;color:#6e6e73;margin-top:1px}
+.sbtn{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:inherit}
+.socc{background:#e8f8ee;color:#1D9E75}.slib{background:#fff0ef;color:#E24B4A}
+.sinps{display:flex;gap:8px}
+.sinps input{flex:1;border:1px solid #d0d0d0;border-radius:8px;padding:7px 10px;font-size:13px;background:#f8f8f8;font-family:inherit}
+
+/* GRIGLIA OCC MENSILE */
+.occ-table{width:100%;border-collapse:collapse;font-size:12px}
+.occ-table th{padding:4px 3px;text-align:center;color:#6e6e73;font-size:10px;font-weight:600;border-bottom:1px solid #eee}
+.occ-table th:first-child{text-align:left;padding-left:8px}
+.occ-table td{padding:4px 3px;text-align:center;cursor:pointer;border-bottom:1px solid #f8f8f8}
+.occ-table td:first-child{text-align:left;padding-left:8px;font-weight:700;cursor:default}
+.dot-on{font-size:14px;line-height:1}
+.dot-off{font-size:14px;line-height:1;opacity:.3}
+.occ-tot{font-weight:700;font-size:11px}
+.eur-row td{font-size:10px;font-weight:700;color:#1D9E75;background:#f8fffe}
+
+/* FISCALE */
+.frow{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid #f0f0f0;font-size:14px}
+.frow:last-child{border-bottom:none}
+.flbl{color:#6e6e73;flex:1;padding-right:8px}
+.fval{font-weight:600}
+.finp{border:1px solid #d0d0d0;border-radius:8px;padding:5px 10px;font-size:14px;font-weight:700;text-align:right;background:#f8f8f8;width:110px;font-family:inherit}
+.ftot{background:#f5f5f7;font-weight:700}
+.scad-r{padding:11px 14px;border-bottom:1px solid #f0f0f0}
+.scad-r:last-child{border-bottom:none}
+.scad-d{font-size:13px;font-weight:600;margin-bottom:2px}
+.scad-v{font-size:12px;color:#6e6e73}
+
+/* ROI */
+.roi-big{text-align:center;padding:16px}
+.roi-pct{font-size:42px;font-weight:800;line-height:1}
+
+/* SHEET */
+#sheet{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.5)}
+.sh-pan{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;padding:18px 18px 40px;max-height:80vh;overflow-y:auto}
+.sh-t{font-size:17px;font-weight:700;margin-bottom:14px}
+.sh-f{margin-bottom:12px}
+.sh-f label{font-size:12px;color:#6e6e73;text-transform:uppercase;display:block;margin-bottom:4px}
+.sh-f input,.sh-f select{width:100%;border:1px solid #d0d0d0;border-radius:10px;padding:10px 13px;font-size:16px;background:#f8f8f8;font-family:inherit}
+.sh-act{display:flex;gap:10px;margin-top:14px}
+.btn{padding:13px;border-radius:12px;border:none;font-size:15px;font-weight:600;cursor:pointer;flex:1;font-family:inherit}
+.btn-p{background:#007aff;color:#fff}
+.btn-s{background:#f0f0f5;color:#1c1c1e}
+.btn-d{background:#fff0ef;color:#E24B4A;margin-top:10px;width:100%;display:none}
+
+/* FAB */
+#fab{display:none;position:fixed;right:18px;bottom:20px;width:52px;height:52px;border-radius:50%;background:#007aff;color:#fff;border:none;font-size:26px;cursor:pointer;box-shadow:0 4px 14px rgba(0,122,255,0.4);align-items:center;justify-content:center;z-index:50;font-family:inherit;line-height:1}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div>
+      <h1>🏠 B&amp;M di F.S. — Solari Fabio</h1>
+      <p>P.IVA 04055390126 · Forfettario 5% · Busto + Milano</p>
+    </div>
+    <div style="display:flex;gap:6px;flex-shrink:0">
+      <button class="hbtn green" id="bSave" title="Salva">💾</button>
+      <button class="hbtn blue" id="bExp" title="Esporta JSON">📤</button>
+      <button class="hbtn" id="bImp" title="Importa JSON">📥</button>
+      <button class="hbtn red" id="bReset" title="Reset">🗑</button>
+      <input type="file" id="fIn" accept=".json" style="display:none">
+    </div>
+  </div>
+  <div class="nav" style="margin:8px -14px -12px;border-top:1px solid #f0f0f0">
+    <button class="ntab on" data-t="home">🏠 Home</button>
+    <button class="ntab" data-t="spese">💸 Spese</button>
+    <button class="ntab" data-t="stanze">🛏 Stanze</button>
+    <button class="ntab" data-t="fiscale">🧾 Fiscale</button>
+    <button class="ntab" data-t="roi">📈 ROI</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- HOME -->
+<div class="sec on" id="s-home">
+  <div class="card">
+    <div class="card-h">📋 Dati impresa</div>
+    <div class="dati-grid">
+      <div class="dati-cell"><span class="dati-lbl">Titolare</span><strong>Solari Fabio</strong></div>
+      <div class="dati-cell"><span class="dati-lbl">Ragione sociale</span><strong>B&amp;M di F.S.</strong></div>
+      <div class="dati-cell"><span class="dati-lbl">P.IVA</span><strong>04055390126</strong></div>
+      <div class="dati-cell"><span class="dati-lbl">REA</span><strong>VA-398745</strong></div>
+      <div class="dati-cell"><span class="dati-lbl">Regime</span><strong>Forfettario 5% (fino 2029)</strong></div>
+      <div class="dati-cell"><span class="dati-lbl">Attività</span><strong>Locazione + AI/Marketing</strong></div>
+    </div>
+  </div>
+  <div class="tip">💡 <strong>Sincronizzazione:</strong> 📤 Esporta → salva JSON su iCloud/email → sull'altro dispositivo 📥 Importa. 💾 Salva = solo locale.</div>
+  <div class="prop b">
+    <div class="prop-t">🏡 Busto — Via Gussoni 1</div>
+    <div class="prop-s">3 stanze · spese a carico tuo · capitale €200.000 immobilizzato</div>
+    <div class="prow"><span class="plbl">Canone/stanza (€)</span><input class="pinp" type="number" inputmode="decimal" id="affB" value="550"></div>
+    <div class="prow"><span class="plbl">Stanze occupate</span><input class="pinp" type="number" inputmode="numeric" id="nB" value="3" min="0" max="3"></div>
+    <div class="prow"><span class="plbl">Capitale immobilizzato (€)</span><input class="pinp" type="number" inputmode="decimal" id="capB" value="200000"></div>
+    <div class="prow"><span class="plbl">Rendimento alternativo (%/anno)</span><input class="pinp" type="number" inputmode="decimal" id="rendB" value="4"></div>
+    <div class="prow"><span class="plbl">Costo opportunità/mese</span><span class="pval warn" id="coppB">—</span></div>
+    <div class="prow"><span class="plbl">Entrata mensile</span><span class="pval pos" id="eB">€1.650</span></div>
+    <div class="obar"><div class="ofill" id="oB" style="background:#007aff;width:100%"></div></div>
+  </div>
+  <div class="prop m">
+    <div class="prop-t">🏢 Milano — Via Giussani 15</div>
+    <div class="prop-s">3 stanze · spese a carico tuo · nessun mutuo</div>
+    <div class="prow"><span class="plbl">Canone/stanza (€)</span><input class="pinp" type="number" inputmode="decimal" id="affM" value="550"></div>
+    <div class="prow"><span class="plbl">Stanze occupate</span><input class="pinp" type="number" inputmode="numeric" id="nM" value="3" min="0" max="3"></div>
+    <div class="prow"><span class="plbl">Capitale immobilizzato (€)</span><input class="pinp" type="number" inputmode="decimal" id="capM" value="200000"></div>
+    <div class="prow"><span class="plbl">Rendimento alternativo (%/anno)</span><input class="pinp" type="number" inputmode="decimal" id="rendM" value="4"></div>
+    <div class="prow"><span class="plbl">Costo opportunità/mese</span><span class="pval warn" id="coppM">—</span></div>
+    <div class="prow"><span class="plbl">Entrata mensile</span><span class="pval pos" id="eM">€1.650</span></div>
+    <div class="obar"><div class="ofill" id="oM" style="background:#5856d6;width:100%"></div></div>
+  </div>
+  <div class="metrics" id="metrics"></div>
+  <div class="card">
+    <div class="card-h">Entrate vs uscite mensili</div>
+    <div class="chart-legend" style="padding:8px 14px 0">
+      <span class="leg"><span class="leg-sq" style="background:#007aff"></span>Busto</span>
+      <span class="leg"><span class="leg-sq" style="background:#5856d6"></span>Milano</span>
+      <span class="leg"><span class="leg-sq" style="background:rgba(226,75,74,0.5)"></span>Uscite</span>
+    </div>
+    <div class="chart-wrap" id="chartEU"></div>
+  </div>
+  <div class="card">
+    <div class="card-h">Saldo cumulativo netto</div>
+    <div class="saldo-chart" id="chartSaldo"></div>
+  </div>
+</div>
+
+<!-- SPESE -->
+<div class="sec" id="s-spese">
+  <div class="seg" id="segS">
+    <button class="stab on" data-s="busto">🏡 Busto</button>
+    <button class="stab" data-s="milano">🏢 Milano</button>
+    <button class="stab" data-s="comuni">📋 Comuni</button>
+  </div>
+  <div id="infoSpese" style="background:#e5f0ff;border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:12px;color:#0051d4;line-height:1.6"></div>
+  <div class="card" id="listaSpese"></div>
+</div>
+
+<!-- STANZE -->
+<div class="sec" id="s-stanze">
+  <div style="background:#e5f0ff;border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:12px;color:#0051d4;line-height:1.6">Tocca <strong>Occupata/Libera</strong> per cambiare stato. Tocca 🟢/⚪ nella griglia per il singolo mese.</div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-h" style="background:#e5f0ff;color:#007aff">🏡 Busto Arsizio</div>
+    <div id="stB"></div>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-h" style="background:#eeeeff;color:#5856d6">🏢 Milano</div>
+    <div id="stM"></div>
+  </div>
+  <div class="card">
+    <div class="card-h">📅 Occupazione mensile — tocca per modificare</div>
+    <div style="overflow-x:auto;padding:8px 4px"><table class="occ-table" id="tOcc"></table></div>
+  </div>
+</div>
+
+<!-- FISCALE -->
+<div class="sec" id="s-fiscale">
+  <div style="background:#e8f8ee;border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:12px;color:#085041;line-height:1.6"><strong>B&amp;M di F.S. · P.IVA 04055390126</strong><br>Forfettario 5% start-up (gen.2025→2029) · Coeff. 40% · No IVA su fatture</div>
+  <div class="card">
+    <div class="card-h">Calcolo imposta sostitutiva 5%</div>
+    <div class="frow"><span class="flbl">Canoni locazione annui</span><span class="fval pos" id="fCan">—</span></div>
+    <div class="frow"><span class="flbl">Consulenza AI/Mktg (€/anno)</span><input class="finp" type="number" inputmode="decimal" id="fCons" value="0"></div>
+    <div class="frow"><span class="flbl">Fatturato totale</span><span class="fval" id="fFatt">—</span></div>
+    <div class="frow"><span class="flbl">Imponibile (×40%)</span><span class="fval" id="fImp">—</span></div>
+    <div class="frow"><span class="flbl">Imposta sostitutiva 5%</span><span class="fval neg" id="fTax">—</span></div>
+    <div class="frow"><span class="flbl">Pressione fiscale effettiva</span><span class="fval warn" id="fPct">—</span></div>
+  </div>
+  <div class="card">
+    <div class="card-h">Netto annuo dopo imposte</div>
+    <div class="frow"><span class="flbl">Entrate lorde annue</span><span class="fval pos" id="fLorde">—</span></div>
+    <div class="frow"><span class="flbl">Spese totali annue</span><span class="fval neg" id="fSpese">—</span></div>
+    <div class="frow"><span class="flbl">Imposta sostitutiva 5%</span><span class="fval neg" id="fT2">—</span></div>
+    <div class="frow"><span class="flbl">Contributi INPS (€/anno)</span><input class="finp" type="number" inputmode="decimal" id="fInps" value="3500"></div>
+    <div class="frow ftot"><span class="flbl" style="font-weight:700">NETTO FINALE</span><span class="fval" id="fNetto" style="font-size:19px">—</span></div>
+  </div>
+  <div class="card">
+    <div class="card-h">Scadenze fiscali 2026</div>
+    <div id="scad"></div>
+  </div>
+</div>
+
+<!-- ROI -->
+<div class="sec" id="s-roi">
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-h" style="background:#e5f0ff;color:#007aff">🏡 Busto — Rendimento</div>
+    <div id="roiB"></div>
+  </div>
+  <div class="card">
+    <div class="card-h" style="background:#eeeeff;color:#5856d6">🏢 Milano — Rendimento</div>
+    <div id="roiM"></div>
+  </div>
+  <div class="card">
+    <div class="card-h">Confronto annuo</div>
+    <div class="chart-wrap" id="chartRoi"></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<button id="fab">+</button>
+
+<div id="sheet">
+  <div class="sh-pan">
+    <div class="sh-t" id="shT">Modifica</div>
+    <div class="sh-f"><label>Descrizione</label><input type="text" id="shV" autocomplete="off"></div>
+    <div class="sh-f"><label>Previsto €/mese</label><input type="number" inputmode="decimal" id="shP"></div>
+    <div class="sh-f"><label>Effettivo €/mese</label><input type="number" inputmode="decimal" id="shE"></div>
+    <div class="sh-f"><label>Note</label><input type="text" id="shN" autocomplete="off"></div>
+    <div class="sh-act">
+      <button class="btn btn-s" id="shAnn">Annulla</button>
+      <button class="btn btn-p" id="shSav">Salva</button>
+    </div>
+    <button class="btn btn-d" id="shDel">Elimina voce</button>
+  </div>
+</div>
+
+<script>
+var SH=['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+var curTab='home',curSec='busto',editIdx=-1,editSec='';
+
+var stanze={
+  busto:[{id:'B1',canone:550,inquilino:'',da:'',occupata:true},{id:'B2',canone:550,inquilino:'',da:'',occupata:true},{id:'B3',canone:550,inquilino:'',da:'',occupata:true}],
+  milano:[{id:'M1',canone:550,inquilino:'',da:'',occupata:true},{id:'M2',canone:550,inquilino:'',da:'',occupata:true},{id:'M3',canone:550,inquilino:'',da:'',occupata:true}]
+};
+var occ={B1:[1,1,1,1,1,1,1,1,1,1,1,1],B2:[1,1,1,1,1,1,1,1,1,1,1,1],B3:[1,1,1,1,1,1,1,1,1,1,1,1],M1:[1,1,1,1,1,1,1,1,1,1,1,1],M2:[1,1,1,1,1,1,1,1,1,1,1,1],M3:[1,1,1,1,1,1,1,1,1,1,1,1]};
+
+function dB(){return[
+  {cat:'Capitale',voce:'Costo opportunità capitale',prev:667,eff:0,note:'€200k × 4%/anno ÷ 12'},
+  {cat:'Energia',voce:'Energia elettrica',prev:125,eff:0,note:'stima mensile'},
+  {cat:'Utenze',voce:'Internet / Wi-Fi',prev:30,eff:0,note:'mensile'},
+  {cat:'Manutenzione',voce:'Giardino (4×€225/anno)',prev:75,eff:0,note:'€900/anno'},
+  {cat:'Manutenzione',voce:'Manutenzione impianti',prev:29,eff:0,note:'€350/anno'},
+  {cat:'Assicurazione',voce:'Assicurazione Busto',prev:33,eff:0,note:'€400/anno'},
+  {cat:'Altro',voce:'Videocamera sorveglianza',prev:10,eff:0,note:'mensile'},
+  {cat:'Altro',voce:'Fondo imprevisti',prev:100,eff:0,note:'accantonamento'}
+];}
+function dM(){return[
+  {cat:'Capitale',voce:'Costo opportunità capitale',prev:667,eff:0,note:'€200k × 4%/anno ÷ 12'},
+  {cat:'Condominio',voce:'Spese condominiali',prev:125,eff:0,note:'€1.500/anno'},
+  {cat:'Riscaldamento',voce:'Gas / riscaldamento',prev:125,eff:0,note:'€1.500/anno'},
+  {cat:'Energia',voce:'Energia elettrica',prev:60,eff:0,note:'mensile'},
+  {cat:'Utenze',voce:'Internet / Wi-Fi',prev:30,eff:0,note:'mensile'},
+  {cat:'Manutenzione',voce:'Manutenzione ordinaria',prev:83,eff:0,note:'€1.000/anno'},
+  {cat:'Assicurazione',voce:'Assicurazione Milano',prev:17,eff:0,note:'€200/anno'},
+  {cat:'Altro',voce:'Fondo imprevisti',prev:80,eff:0,note:'accantonamento'}
+];}
+function dC(){return[
+  {cat:'Professionale',voce:'Commercialista / CAF',prev:80,eff:0,note:'mensile'},
+  {cat:'Fiscale',voce:'Accantonamento INPS',prev:292,eff:0,note:'€3.500/anno'}
+];}
+
+var sp={busto:null,milano:null,comuni:null};
+function gSp(s){if(!sp[s])sp[s]=s==='busto'?dB():s==='milano'?dM():dC();return sp[s];}
+
+// GETTERS robusti — leggono da tutti i possibili attributi
+function gCopp(capId, rendId){
+  var cap = gV(capId)||200000;
+  var rend = gV(rendId)||4;
+  // Costo opportunità mensile = capitale × tasso annuo / 12
+  return Math.round(cap * (rend/100) / 12);
+}
+function costoOpp(cap, tasso){
+  // Interessi persi su orizzonte 10 anni, spalmati mensilmente
+  // Formula: capitale × tasso% / 12 (rendimento semplice annuo mensile)
+  return Math.round(cap * (tasso/100) / 12);
+}
+// Costo opportunità capitale immobilizzato su 10 anni
+// = capitale * tasso / 12 (rendimento mensile perso)
+function costoOpp(cap, tasso){
+  return Math.round(cap * (tasso/100) / 12);
+}
+function getCostoB(){ return costoOpp(gV('capB')||200000, gV('tassoB')||4); }
+function getCostoM(){ return costoOpp(gV('capM')||200000, gV('tassoM')||4); }
+
+function gV(id){
+  var e=document.getElementById(id);
+  if(!e)return 0;
+  // Prova tutte le sorgenti possibili — robusta per browser embedded iOS
+  var sources=[e.value, e.getAttribute('value'), e.defaultValue];
+  for(var i=0;i<sources.length;i++){
+    var v=parseFloat(sources[i]);
+    if(!isNaN(v)&&v>0)return v;
+  }
+  return 0;
+}
+function gS(id){var e=document.getElementById(id);return e?e.value||e.getAttribute('value')||'':''}
+function sv(id,val,cls){var e=document.getElementById(id);if(!e)return;e.textContent=val;if(cls){e.className=e.className.replace(/\b(pos|neg|warn|neu)\b/g,'');e.className+=' '+cls;}}
+function N(n){return Math.round(n).toLocaleString('it-IT');}
+function F(n){return'€'+N(n);}
+
+function entReali(){
+  // Usa occupazione mensile reale (media annuale)
+  var b=stanze.busto.reduce(function(a,s){
+    var mesiOcc=occ[s.id].reduce(function(x,v){return x+v;},0);
+    return a+s.canone*(mesiOcc/12);
+  },0);
+  var m=stanze.milano.reduce(function(a,s){
+    var mesiOcc=occ[s.id].reduce(function(x,v){return x+v;},0);
+    return a+s.canone*(mesiOcc/12);
+  },0);
+  return{b:Math.round(b),m:Math.round(m),tot:Math.round(b+m)};
+}
+// Entrate annue reali (somma effettiva mese per mese)
+function entAnnoReali(){
+  var b=0,m=0;
+  for(var i=0;i<12;i++){var em=entMese(i);b+=em.b;m+=em.m;}
+  return{b:b,m:m,tot:b+m};
+}
+function entMese(mes){
+  var b=stanze.busto.reduce(function(a,s){return a+(occ[s.id][mes]?s.canone:0);},0);
+  var m=stanze.milano.reduce(function(a,s){return a+(occ[s.id][mes]?s.canone:0);},0);
+  return{b:b,m:m,tot:b+m};
+}
+function uscite(){
+  // Aggiorna costo opportunità nelle spese prima di calcolare
+  aggiornaCopp();
+  var b=gSp('busto').reduce(function(a,r){return a+(r.prev||0);},0);
+  var m=gSp('milano').reduce(function(a,r){return a+(r.prev||0);},0);
+  var c=gSp('comuni').reduce(function(a,r){return a+(r.prev||0);},0);
+  return{b:b,m:m,c:c,tot:b+m+c};
+}
+function aggiornaCopp(){
+  var cB=gCopp('capB','rendB');
+  var cM=gCopp('capM','rendM');
+  // Aggiorna voce costo opportunità in spese Busto
+  var rowsB=gSp('busto');
+  var rB=null;
+  for(var i=0;i<rowsB.length;i++){if(rowsB[i].voce==='Costo opportunità capitale'){rB=rowsB[i];break;}}
+  if(!rB){rowsB.unshift({cat:'Capitale',voce:'Costo opportunità capitale',prev:cB,eff:0,note:'€200k × '+gV('rendB')+'%/anno ÷ 12'});}
+  else{rB.prev=cB;rB.note='€'+Math.round(gV('capB')/1000)+'k × '+gV('rendB')+'%/anno ÷ 12';}
+  // Aggiorna voce costo opportunità in spese Milano
+  var rowsM=gSp('milano');
+  var rM=null;
+  for(var i=0;i<rowsM.length;i++){if(rowsM[i].voce==='Costo opportunità capitale'){rM=rowsM[i];break;}}
+  if(!rM){rowsM.unshift({cat:'Capitale',voce:'Costo opportunità capitale',prev:cM,eff:0,note:'€200k × '+gV('rendM')+'%/anno ÷ 12'});}
+  else{rM.prev=cM;rM.note='€'+Math.round(gV('capM')/1000)+'k × '+gV('rendM')+'%/anno ÷ 12';}
+}
+
+// GRAFICO CSS — barre orizzontali proporzionali
+function renderChartEU(){
+  var u=uscite();
+  var eArr=[],uArr=[];
+  var maxV=0;
+  for(var i=0;i<12;i++){
+    var em=entMese(i);
+    eArr.push(em);
+    uArr.push(u.tot);
+    if(em.tot>maxV)maxV=em.tot;
+    if(u.tot>maxV)maxV=u.tot;
+  }
+  if(maxV===0)maxV=3300;
+  var html='';
+  for(var i=0;i<12;i++){
+    var pB=Math.round(eArr[i].b/maxV*100);
+    var pM=Math.round(eArr[i].m/maxV*100);
+    var pU=Math.round(uArr[i]/maxV*100);
+    html+='<div class="chart-row">'
+      +'<span class="chart-lbl">'+SH[i]+'</span>'
+      +'<div class="chart-bars">'
+      +'<div class="bar-e" style="width:'+pB+'%;background:#007aff"></div>'
+      +'<div class="bar-m" style="width:'+pM+'%;background:#5856d6"></div>'
+      +'<div style="flex:1"></div>'
+      +'<div class="bar-u" style="width:'+pU+'%;background:rgba(226,75,74,0.5)"></div>'
+      +'</div>'
+      +'<span class="chart-val" style="color:'+(eArr[i].tot>=uArr[i]?'#1D9E75':'#E24B4A')+'">'+F(eArr[i].tot)+'</span>'
+      +'</div>';
+  }
+  document.getElementById('chartEU').innerHTML=html;
+}
+
+function renderChartSaldo(){
+  var u=uscite();
+  var cum=0;
+  var vals=[];
+  for(var i=0;i<12;i++){
+    var em=entMese(i);
+    cum+=em.tot-u.tot;
+    vals.push(Math.round(cum));
+  }
+  var maxAbs=1;
+  for(var i=0;i<12;i++){if(Math.abs(vals[i])>maxAbs)maxAbs=Math.abs(vals[i]);}
+  var html='';
+  for(var i=0;i<12;i++){
+    var v=vals[i];
+    var pct=Math.round(Math.abs(v)/maxAbs*45); // max 45% per lato
+    var color=v>=0?'#1D9E75':'#E24B4A';
+    var left=v>=0?'50%':'calc(50% - '+pct+'%)';
+    html+='<div class="saldo-row">'
+      +'<span class="saldo-lbl">'+SH[i]+'</span>'
+      +'<div class="saldo-track">'
+      +'<div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:#ccc;z-index:1"></div>'
+      +'<div class="saldo-bar" style="left:'+(v>=0?'50%':'calc(50% - '+pct+'%)')+';width:'+pct+'%;background:'+color+'"></div>'
+      +'</div>'
+      +'<span class="saldo-val '+(v>=0?'pos':'neg')+'">'+F(v)+'</span>'
+      +'</div>';
+  }
+  document.getElementById('chartSaldo').innerHTML=html;
+}
+
+function renderChartRoi(){
+  var e=entReali(),u=uscite();
+  var half=u.c*12/2;
+  var nB=e.b*12-u.b*12-half;
+  var nM=e.m*12-u.m*12-half;
+  var items=[
+    {l:'Busto entrate',v:e.b*12,c:'#007aff'},
+    {l:'Busto spese',v:u.b*12+half,c:'rgba(0,122,255,0.3)'},
+    {l:'Busto netto',v:nB,c:nB>=0?'#007aff':'#E24B4A'},
+    {l:'Milano entrate',v:e.m*12,c:'#5856d6'},
+    {l:'Milano spese',v:u.m*12+half,c:'rgba(88,86,214,0.3)'},
+    {l:'Milano netto',v:nM,c:nM>=0?'#5856d6':'#E24B4A'}
+  ];
+  var maxV=Math.max.apply(null,items.map(function(x){return x.v;}));
+  if(maxV===0)maxV=10000;
+  var html='';
+  items.forEach(function(it){
+    var pct=Math.round(it.v/maxV*100);
+    html+='<div class="chart-row">'
+      +'<span class="chart-lbl" style="width:70px;text-align:left;font-size:10px">'+it.l+'</span>'
+      +'<div class="chart-bars"><div class="bar-solo" style="width:'+pct+'%;background:'+it.c+'"></div><div style="flex:1"></div></div>'
+      +'<span class="chart-val">'+F(it.v)+'</span>'
+      +'</div>';
+  });
+  document.getElementById('chartRoi').innerHTML=html;
+}
+
+// RENDER HOME
+function renderHome(){
+  var e=entReali(),u=uscite();
+  var oB=stanze.busto.filter(function(s){return s.occupata;}).length;
+  var oM=stanze.milano.filter(function(s){return s.occupata;}).length;
+  document.getElementById('eB').textContent=F(e.b);
+  document.getElementById('eM').textContent=F(e.m);
+  // Mostra costo opportunità calcolato
+  var cB=gCopp('capB','rendB'), cM=gCopp('capM','rendM');
+  var elCB=document.getElementById('coppB'), elCM=document.getElementById('coppM');
+  if(elCB)elCB.textContent='−'+F(cB)+'/mese';
+  if(elCM)elCM.textContent='−'+F(cM)+'/mese';
+  document.getElementById('oB').style.width=Math.round(oB/3*100)+'%';
+  document.getElementById('oM').style.width=Math.round(oM/3*100)+'%';
+  var saldo=e.tot-u.tot;
+  var tax=e.tot*12*0.4*0.05;
+  var netto=saldo*12-tax-gV('fInps');
+  document.getElementById('metrics').innerHTML=[
+    {l:'Entrate reali mensili',v:e.tot,c:'pos',s:'Busto '+oB+'/3 · Milano '+oM+'/3'},
+    {l:'Uscite mensili totali',v:u.tot,c:'neu',s:'tutti i costi fissi'},
+    {l:'Saldo netto mensile',v:saldo,c:saldo>=0?'pos':'neg',s:'prima imposte'},
+    {l:'Netto annuo stimato',v:netto,c:netto>=0?'pos':'neg',s:'dopo 5% e INPS'}
+  ].map(function(r){
+    return '<div class="mc"><div class="mc-l">'+r.l+'</div><div class="mc-v '+r.c+'">'+F(r.v)+'</div><div class="mc-s">'+r.s+'</div></div>';
+  }).join('');
+  renderChartEU();
+  renderChartSaldo();
+}
+
+// RENDER SPESE
+function renderSpese(){
+  var info={busto:'Costi fissi <strong>Busto</strong> — a carico tuo.',milano:'Costi fissi <strong>Milano</strong> — a carico tuo.',comuni:'Spese <strong>comuni</strong>.'};
+  document.getElementById('infoSpese').innerHTML=info[curSec];
+  var rows=gSp(curSec);
+  var el=document.getElementById('listaSpese');
+  el.innerHTML='';
+  var lastC='',totP=0;
+  for(var i=0;i<rows.length;i++){
+    var r=rows[i];
+    if(r.cat!==lastC){
+      lastC=r.cat;
+      var cd=document.createElement('div');cd.className='cat-l';cd.textContent=r.cat;el.appendChild(cd);
+    }
+    totP+=r.prev||0;
+    var d=document.createElement('div');d.className='lrow';
+    d.innerHTML='<div class="ll"><div class="ll-t">'+r.voce+'</div><div class="ll-s">'+(r.note||'')+'</div></div>'
+      +'<div class="lr"><div class="lr-v '+(r.eff?'neg':'')+'">'+( r.eff?F(r.eff):'—')+'</div><div class="lr-p">prev: '+F(r.prev||0)+'</div></div>';
+    (function(idx){d.addEventListener('click',function(){openEdit(idx);});})(i);
+    el.appendChild(d);
+  }
+  var tot=document.createElement('div');tot.className='tot-row';
+  tot.innerHTML='<span>Totale previsto</span><span class="neg" style="font-size:16px">'+F(totP)+'</span>';
+  el.appendChild(tot);
+  var ab=document.createElement('button');ab.className='add-btn';ab.textContent='+ Aggiungi spesa';
+  ab.addEventListener('click',openAdd);
+  el.appendChild(ab);
+}
+
+function openEdit(i){
+  editIdx=i;editSec=curSec;
+  var r=gSp(curSec)[i];
+  document.getElementById('shT').textContent=r.voce||'Modifica';
+  document.getElementById('shV').value=r.voce||'';
+  document.getElementById('shP').value=r.prev||'';
+  document.getElementById('shE').value=r.eff||'';
+  document.getElementById('shN').value=r.note||'';
+  document.getElementById('shDel').style.display='block';
+  document.getElementById('sheet').style.display='block';
+}
+function openAdd(){
+  var rows=gSp(curSec);
+  rows.push({cat:'Altro',voce:'',prev:0,eff:0,note:''});
+  editIdx=rows.length-1;editSec=curSec;
+  document.getElementById('shT').textContent='Nuova spesa';
+  document.getElementById('shV').value='';document.getElementById('shP').value='';
+  document.getElementById('shE').value='';document.getElementById('shN').value='';
+  document.getElementById('shDel').style.display='none';
+  document.getElementById('sheet').style.display='block';
+}
+function closeEdit(){document.getElementById('sheet').style.display='none';renderSpese();}
+function saveEdit(){
+  var r=gSp(editSec)[editIdx];
+  r.voce=document.getElementById('shV').value||r.voce;
+  r.prev=parseFloat(document.getElementById('shP').value)||0;
+  r.eff=parseFloat(document.getElementById('shE').value)||0;
+  r.note=document.getElementById('shN').value||'';
+  document.getElementById('sheet').style.display='none';render();
+}
+function delSpesa(){
+  if(!confirm('Eliminare?'))return;
+  gSp(editSec).splice(editIdx,1);
+  document.getElementById('sheet').style.display='none';render();
+}
+
+// RENDER STANZE
+function renderStanze(){
+  function build(prop,elId){
+    var c=document.getElementById(elId);c.innerHTML='';
+    stanze[prop].forEach(function(s,i){
+      var b=document.createElement('div');b.className='sbl';
+      b.innerHTML='<div class="sr"><div class="sid">'+s.id+'</div>'
+        +'<div class="sinf"><div class="sn">'+(s.inquilino||'<span style="color:#aeaeb2">nessun inquilino</span>')+'</div>'
+        +'<div class="sd">€'+s.canone+'/mese'+(s.da?' · da '+s.da:'')+'</div></div>'
+        +'<button class="sbtn '+(s.occupata?'socc':'slib')+'" data-p="'+prop+'" data-i="'+i+'">'+(s.occupata?'Occupata':'Libera')+'</button>'
+        +'</div>'
+        +'<div class="sinps">'
+        +'<input type="text" placeholder="Nome inquilino" value="'+s.inquilino+'" data-p="'+prop+'" data-i="'+i+'" data-f="inquilino">'
+        +'<input type="text" placeholder="Da (Gen 2026)" value="'+s.da+'" data-p="'+prop+'" data-i="'+i+'" data-f="da">'
+        +'</div>';
+      c.appendChild(b);
+    });
+  }
+  build('busto','stB');build('milano','stM');
+  // Griglia occupazione
+  var tb=document.getElementById('tOcc');tb.innerHTML='';
+  var SHs=['G','F','M','A','M','G','L','A','S','O','N','D'];
+  var hr=document.createElement('tr');
+  hr.innerHTML='<th>Stanza</th><th>Tot</th>'+SHs.map(function(s){return'<th>'+s+'</th>';}).join('');
+  tb.appendChild(hr);
+  var tutte=stanze.busto.concat(stanze.milano);
+  tutte.forEach(function(s){
+    var tot=occ[s.id].reduce(function(a,v){return a+v;},0);
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td><strong>'+s.id+'</strong>'+(s.inquilino?' <span style="font-size:10px;color:#aeaeb2">'+s.inquilino+'</span>':'')+'</td>'
+      +'<td class="occ-tot '+(tot>=10?'pos':'warn')+'">'+tot+'</td>'
+      +occ[s.id].map(function(v,m){
+        return '<td data-id="'+s.id+'" data-m="'+m+'"><span class="'+(v?'dot-on':'dot-off')+'">'+(v?'🟢':'⚪')+'</span></td>';
+      }).join('');
+    tb.appendChild(tr);
+  });
+  // Riga €/mese
+  var tr2=document.createElement('tr');tr2.className='eur-row';
+  tr2.innerHTML='<td colspan="2" style="font-size:10px;color:#6e6e73;padding-left:8px">€/mese</td>'
+    +SHs.map(function(_,m){var em=entMese(m);return'<td>'+Math.round(em.tot/1000)+'k</td>';}).join('');
+  tb.appendChild(tr2);
+}
+
+// RENDER FISCALE
+function renderFiscale(){
+  var e=entReali(),u=uscite();
+  var can=e.tot*12,cons=parseFloat(document.getElementById('fCons').value)||0;
+  var fatt=can+cons,imp=fatt*0.4*0.05,inps=parseFloat(document.getElementById('fInps').value)||3500;
+  var netto=can-u.tot*12-imp-inps+cons;
+  sv('fCan',F(can),'pos');sv('fFatt',F(fatt));sv('fImp',F(fatt*0.4));
+  sv('fTax',F(imp),'neg');sv('fPct',Math.round(imp/fatt*100)+'%','warn');
+  sv('fLorde',F(can),'pos');sv('fSpese',F(u.tot*12),'neg');sv('fT2',F(imp),'neg');
+  sv('fNetto',F(netto),netto>=0?'pos':'neg');
+  var scList=[
+    {d:'30 giu 2026',v:'Acconto imposta sostitutiva (40%)',i:Math.round(imp*.4)},
+    {d:'30 giu 2026',v:'INPS — I rata',i:Math.round(inps*.25)},
+    {d:'30 set 2026',v:'INPS — II rata',i:Math.round(inps*.25)},
+    {d:'30 nov 2026',v:'Saldo imposta sostitutiva (60%)',i:Math.round(imp*.6)},
+    {d:'30 nov 2026',v:'INPS — III rata',i:Math.round(inps*.25)},
+    {d:'28 feb 2027',v:'INPS — IV rata',i:Math.round(inps*.25)}
+  ];
+  var sc=document.getElementById('scad');sc.innerHTML='';
+  scList.forEach(function(s){
+    var d=document.createElement('div');d.className='scad-r';
+    d.innerHTML='<div class="scad-d">'+s.d+'</div><div style="display:flex;justify-content:space-between;align-items:center"><span class="scad-v">'+s.v+'</span><strong class="neg">'+F(s.i)+'</strong></div>';
+    sc.appendChild(d);
+  });
+}
+
+// RENDER ROI
+function renderRoi(){
+  var eA=entAnnoReali(); // usa occupazione reale mese per mese
+  var e=entReali(),u=uscite();
+  var iB=gV('capB')||200000,iM=gV('capM')||200000,half=u.c*12/2;
+  var nB=eA.b-u.b*12-half,nM=eA.m-u.m*12-half;
+  function html(ea,ua,n,r,inv,co){
+    return[
+      ['Entrate annue',F(ea),'pos'],
+      ['di cui costo opportunità','-'+F(co*12),'neg'],
+      ['Altre spese annue',F(ua-co*12),'neg'],
+      ['Netto annuo reale',F(n),+n>=0?'pos':'neg'],
+      ['Capitale immobilizzato',F(inv),'neu']
+    ].map(function(x){return '<div class="frow"><span class="flbl">'+x[0]+'</span><span class="fval '+x[2]+'">'+x[1]+'</span></div>';}).join('')
+    +'<div class="roi-big"><div style="font-size:12px;color:#6e6e73;margin-bottom:4px">ROI netto reale (10 anni)</div><div class="roi-pct" style="color:'+(+r>=0?'#1D9E75':'#E24B4A')+'">'+Math.abs(r)+'%</div>'
+    +'<div style="font-size:11px;color:#aeaeb2;margin-top:4px">incl. costo opportunità '+F(co)+'/mese</div></div>';
+  }
+  var rB=(nB/iB*100).toFixed(1),rM=(nM/iM*100).toFixed(1);
+  document.getElementById('roiB').innerHTML=html(eA.b,u.b*12+half,nB,rB,iB,getCostoB());
+  document.getElementById('roiM').innerHTML=html(eA.m,u.m*12+half,nM,rM,iM,getCostoM());
+  renderChartRoi();
+}
+
+// SALVA / ESPORTA / IMPORTA
+function getDati(){
+  return{stanze:stanze,spese:sp,occ:occ,
+    capB:gV('capB'),tassoB:gV('tassoB'),
+    capM:gV('capM'),tassoM:gV('tassoM'),
+    exportDate:new Date().toISOString(),
+    device:navigator.userAgent.indexOf('iPhone')>=0?'iPhone':'PC',v:6};
+}
+function setDati(d){
+  if(d.stanze)Object.assign(stanze,d.stanze);
+  if(d.spese)Object.assign(sp,d.spese);
+  if(d.occ)Object.assign(occ,d.occ);
+  if(d.occupazione)Object.assign(occ,d.occupazione);
+  if(d.capB){var e=document.getElementById('capB');if(e)e.value=d.capB;}
+  if(d.tassoB){var e=document.getElementById('tassoB');if(e)e.value=d.tassoB;}
+  if(d.capM){var e=document.getElementById('capM');if(e)e.value=d.capM;}
+  if(d.tassoM){var e=document.getElementById('tassoM');if(e)e.value=d.tassoM;}
+}
+
+function salva(){
+  try{localStorage.setItem('bm_2026',JSON.stringify(getDati()));}catch(e){}
+  var b=document.getElementById('bSave');b.textContent='✅ Salvato!';b.style.background='#e8f8ee';b.style.color='#1D9E75';
+  setTimeout(function(){b.textContent='💾 Salva';b.style.background='';b.style.color='';},2000);
+}
+function esporta(){
+  try{
+    var blob=new Blob([JSON.stringify(getDati(),null,2)],{type:'application/json'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');a.href=url;a.download='bm_2026.json';
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},300);
+  }catch(e){prompt('Copia e salva come bm_2026.json',JSON.stringify(getDati()));}
+}
+function carica(){
+  try{var raw=localStorage.getItem('bm_2026');if(raw){setDati(JSON.parse(raw));}}catch(e){}
+}
+function reset(){if(!confirm('Cancellare tutto?'))return;localStorage.removeItem('bm_2026');location.reload();}
+
+// RENDER MASTER
+function render(){
+  renderHome();
+  if(curTab==='spese')renderSpese();
+  else if(curTab==='stanze')renderStanze();
+  else if(curTab==='fiscale')renderFiscale();
+  else if(curTab==='roi')renderRoi();
+}
+
+// EVENTI — IIFE eseguito immediatamente, compatibile con WhatsApp iOS
+(function(){
+  // NAV
+  var tabs=document.querySelectorAll('.ntab');
+  function goTab(t){
+    curTab=t;
+    for(var i=0;i<tabs.length;i++)tabs[i].classList.toggle('on',tabs[i].dataset.t===t);
+    var secs=document.querySelectorAll('.sec');
+    for(var i=0;i<secs.length;i++){var show=secs[i].id==='s-'+t;secs[i].classList.toggle('on',show);secs[i].style.display=show?'block':'none';}
+    document.getElementById('fab').style.display=t==='spese'?'flex':'none';
+    window.scrollTo(0,0);
+    if(t==='spese')renderSpese();
+    else if(t==='stanze')renderStanze();
+    else if(t==='fiscale')renderFiscale();
+    else if(t==='roi')renderRoi();
+  }
+  for(var i=0;i<tabs.length;i++){
+    tabs[i].addEventListener('click',function(){goTab(this.dataset.t);});
+    tabs[i].addEventListener('touchend',function(e){e.preventDefault();goTab(this.dataset.t);});
+  }
+  // SEG SPESE
+  var seg=document.getElementById('segS');
+  function goSeg(s){curSec=s;var bs=seg.querySelectorAll('.stab');for(var i=0;i<bs.length;i++)bs[i].classList.toggle('on',bs[i].dataset.s===s);renderSpese();}
+  seg.addEventListener('click',function(e){var b=e.target.closest('.stab');if(b)goSeg(b.dataset.s);});
+  seg.addEventListener('touchend',function(e){e.preventDefault();var b=e.target.closest('.stab');if(b)goSeg(b.dataset.s);});
+  // FAB
+  document.getElementById('fab').addEventListener('click',openAdd);
+  // SHEET
+  document.getElementById('sheet').addEventListener('click',function(e){if(e.target===this)closeEdit();});
+  document.getElementById('shAnn').addEventListener('click',closeEdit);
+  document.getElementById('shSav').addEventListener('click',saveEdit);
+  document.getElementById('shDel').addEventListener('click',delSpesa);
+  // PULSANTI HEADER
+  document.getElementById('bSave').addEventListener('click',salva);
+  document.getElementById('bSave').addEventListener('touchend',function(e){e.preventDefault();salva();});
+  document.getElementById('bExp').addEventListener('click',esporta);
+  document.getElementById('bExp').addEventListener('touchend',function(e){e.preventDefault();esporta();});
+  document.getElementById('bImp').addEventListener('click',function(){document.getElementById('fIn').click();});
+  document.getElementById('bImp').addEventListener('touchend',function(e){e.preventDefault();document.getElementById('fIn').click();});
+  document.getElementById('fIn').addEventListener('change',function(){
+    var file=this.files[0];if(!file)return;
+    var r=new FileReader();
+    r.onload=function(ev){try{var d=JSON.parse(ev.target.result);setDati(d);salva();render();alert('✅ Dati importati ('+( d.device||'?')+' '+((d.exportDate||'').slice(0,10))+')');
+    }catch(e){alert('Errore: '+e.message);}};r.readAsText(file);
+  });
+  document.getElementById('bReset').addEventListener('click',reset);
+  // INPUT PROP
+  function onPropChange(){render();}
+  ['affB','nB','capB','rendB','affM','nM','capM','rendM'].forEach(function(id){
+    var e=document.getElementById(id);
+    e.addEventListener('change',onPropChange);e.addEventListener('input',onPropChange);
+  });
+  // STANZE badge e input
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.sbtn');
+    if(b){var p=b.dataset.p,i=parseInt(b.dataset.i);stanze[p][i].occupata=!stanze[p][i].occupata;for(var m=0;m<12;m++)occ[stanze[p][i].id][m]=stanze[p][i].occupata?1:0;renderStanze();renderHome();}
+    var td=e.target.closest('td[data-id]');
+    if(td){var id=td.dataset.id,m=parseInt(td.dataset.m);occ[id][m]=occ[id][m]?0:1;var haOcc=occ[id].some(function(v){return v;});['busto','milano'].forEach(function(p){stanze[p].forEach(function(s){if(s.id===id)s.occupata=haOcc;});});renderStanze();renderHome();}
+  });
+  document.addEventListener('change',function(e){
+    var t=e.target;
+    if(t.dataset.p&&t.dataset.f)stanze[t.dataset.p][parseInt(t.dataset.i)][t.dataset.f]=t.value;
+    if(t.id==='fCons'||t.id==='fInps')renderFiscale();
+    if(t.id==='capB'||t.id==='rendB'||t.id==='capM'||t.id==='rendM'){aggiornaCopp();render();}
+  });
+  // CARICA e RENDER iniziale
+  carica();
+  // Render immediato + secondo render dopo 300ms per grafici e valori
+  render();
+  setTimeout(function(){render();}, 300);
+  setTimeout(function(){render();}, 800);
+})();
+</script>
+</body>
+</html>
