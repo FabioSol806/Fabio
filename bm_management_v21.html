@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="B&M Management">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<title>B&M Management — Cash Flow 2026</title>
+<style>
+:root{
+  color-scheme: light only;
+  --bg:#f1f3f8;
+  --s1:#ffffff;
+  --s2:#f8f9fc;
+  --s3:#e8eaf0;
+  --border:#e2e6ef;
+  --border2:#d0d5e8;
+  --text:#0d1b2a;
+  --text2:#637083;
+  --text3:#a0aab8;
+  --cyan:#1a73e8;
+  --cyan2:#1557b0;
+  --green:#0ea472;--gl:rgba(14,164,114,.1);--gd:#0a7d57;
+  --red:#f04438;--rl:rgba(240,68,56,.1);
+  --blue:#1a73e8;--bl:rgba(26,115,232,.1);
+  --amber:#f59e0b;--al:rgba(245,158,11,.1);
+  --busto:#1a73e8;--bl2:rgba(26,115,232,.12);
+  --milano:#7c3aed;--ml2:rgba(124,58,237,.12);
+  --r:14px;--rs:8px;
+  --glow:0 2px 12px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:14px;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* HERO HEADER */
+.hero{
+  position:relative;
+  background:#1a2236;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  overflow:hidden;
+  z-index:10;
+}
+
+.hero-bg{ display:none; }
+
+/* STICKY TOP BAR */
+.top{
+  background:#1a2236;
+  padding:10px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  position:sticky;
+  top:0;
+  z-index:99;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.top-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:1;
+  min-width:0;
+}
+
+/* MINI LOGO in top bar */
+.top-logo{
+  width:36px;
+  height:36px;
+  flex-shrink:0;
+}
+
+.top-info{flex:1;min-width:0}
+.top-info h1{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:.5px;
+  color:#ffffff !important;
+  line-height:1.1;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.top-info h1 .badge{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:9px;
+  font-weight:700;
+  background:var(--cyan2);
+  color:#06090f;
+  padding:2px 7px;
+  border-radius:20px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  vertical-align:middle;
+  margin-left:6px;
+}
+.top-info p{font-size:10px;color:rgba(255,255,255,0.55) !important;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.top-btns{display:flex;gap:5px;flex-shrink:0}
+.icon-btn{
+  width:32px;height:32px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.08);
+  color:#ffffff;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  transition:all .2s;
+}
+.icon-btn:hover{background:rgba(255,255,255,0.18);}
+.icon-btn.g{border-color:rgba(14,164,114,.4);color:#3fb950;}
+.icon-btn.g:hover{background:rgba(14,164,114,.15);}
+.icon-btn.b{border-color:rgba(26,115,232,.4);color:#60a5fa;}
+.icon-btn.b:hover{background:rgba(26,115,232,.15);}
+.icon-btn.r{border-color:rgba(240,68,56,.3);color:#f85149;}
+.icon-btn.r:hover{background:rgba(240,68,56,.15);}
+.hbtn{
+  padding:6px 10px;
+  border-radius:var(--rs);
+  border:1px solid var(--border2);
+  font-size:11px;
+  font-weight:600;
+  cursor:pointer;
+  background:rgba(0,229,255,0.05);
+  color:#637083;
+  font-family:inherit;
+  display:flex;
+  align-items:center;
+  gap:4px;
+  transition:all .15s;
+  white-space:nowrap;
+}
+.hbtn:active{opacity:.7}
+.hbtn.g{border-color:rgba(63,185,80,.4);color:var(--green);background:var(--gl)}
+.hbtn.b{border-color:rgba(88,166,255,.4);color:var(--blue);background:var(--bl)}
+.hbtn.r{border-color:rgba(248,81,73,.3);color:var(--red);background:var(--rl)}
+
+/* HERO SECTION — shown only on home tab */
+.hero-section{
+  padding:28px 20px 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  position:relative;
+}
+
+.hero-logo{
+  width:160px;
+  height:160px;
+  margin-bottom:16px;
+  filter:drop-shadow(0 0 30px rgba(0,229,255,0.25));
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+.hero-title{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:32px;
+  font-weight:700;
+  letter-spacing:2px;
+  color:var(--text);
+  line-height:1.1;
+  margin-bottom:4px;
+}
+.hero-title span{
+  color:var(--cyan);
+  text-shadow:0 0 20px rgba(0,229,255,0.4);
+}
+.hero-sub{
+  font-size:11px;
+  color:#637083;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:8px;
+}
+.hero-piva{
+  font-size:10px;
+  color:#a0aab8;
+  letter-spacing:1px;
+}
+
+/* DECORATIVE LINE */
+.hero-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:16px 0 0;
+  width:100%;
+  max-width:320px;
+}
+.hero-line::before,.hero-line::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--border2), transparent);
+}
+.hero-line-dot{
+  width:6px;height:6px;
+  background:var(--cyan);
+  border-radius:50%;
+  box-shadow:0 0 8px var(--cyan);
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border-bottom:1px solid var(--border);
+  background:rgba(248,249,252,0.95);
+  backdrop-filter:blur(12px);
+  scrollbar-width:none;
+  position:sticky;
+  top:61px;
+  z-index:98;
+}
+.nav::-webkit-scrollbar{display:none}
+.ntab{
+  flex-shrink:0;
+  padding:11px 16px;
+  border:none;
+  background:none;
+  font-size:11px;
+  font-weight:600;
+  color:#637083;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  white-space:nowrap;
+  font-family:inherit;
+  transition:all .2s;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  letter-spacing:.02em;
+}
+.ntab.on{color:var(--cyan);border-bottom-color:var(--cyan)}
+
+/* MAIN */
+.main{padding:16px;max-width:700px;margin:0 auto;padding-bottom:60px;position:relative;z-index:1}
+.sec{display:none}.sec.on{display:block}
+
+/* CARD */
+.card{
+  background:rgba(248,249,252,0.8);
+  border-radius:var(--r);
+  margin-bottom:14px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  backdrop-filter:blur(8px);
+  transition:border-color .2s;
+}
+.card:hover{border-color:var(--border2)}
+.card-h{
+  padding:10px 16px;
+  font-size:10px;
+  font-weight:700;
+  color:#637083;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(0,229,255,0.02);
+}
+
+/* DATI SOCIETARI */
+.dati-grid{display:grid;grid-template-columns:1fr 1fr}
+.dati-cell{padding:11px 16px;border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
+.dati-cell:nth-child(even){border-right:none}
+.dati-cell:last-child,.dati-cell:nth-last-child(2){border-bottom:none}
+.dati-lbl{font-size:9px;color:#a0aab8;display:block;margin-bottom:3px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.dati-val{font-size:12px;font-weight:600;color:var(--text)}
+
+/* TIP / INFO */
+.tip{
+  background:rgba(227,179,65,0.06);
+  border:1px solid rgba(227,179,65,0.2);
+  border-radius:var(--rs);
+  padding:10px 14px;
+  margin-bottom:14px;
+  font-size:11px;
+  color:var(--amber);
+  line-height:1.6;
+  display:flex;
+  gap:8px;
+}
+.tip svg{flex-shrink:0;margin-top:1px}
+
+/* PROP CARDS */
+.prop{border-radius:var(--r);margin-bottom:14px;padding:16px;border:1px solid;backdrop-filter:blur(8px)}
+.prop.b{background:linear-gradient(135deg,rgba(88,166,255,0.07),rgba(88,166,255,0.02));border-color:rgba(88,166,255,.2)}
+.prop.m{background:linear-gradient(135deg,rgba(163,113,247,0.07),rgba(163,113,247,0.02));border-color:rgba(163,113,247,.2)}
+.prop-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.prop-t{font-size:14px;font-weight:700;letter-spacing:-.2px}
+.prop-s{font-size:11px;color:#637083;margin-top:3px}
+.prop-badge{font-size:9px;font-weight:800;padding:3px 9px;border-radius:20px;letter-spacing:.1em;text-transform:uppercase}
+.badge-b{background:rgba(88,166,255,.15);color:var(--busto);border:1px solid rgba(88,166,255,.3)}
+.badge-m{background:rgba(163,113,247,.15);color:var(--milano);border:1px solid rgba(163,113,247,.3)}
+.prow{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}
+.prow:last-child{border-bottom:none;padding-bottom:0}
+.plbl{font-size:12px;color:#637083;font-weight:500}
+.pinp{
+  border:1px solid var(--border2);
+  border-radius:var(--rs);
+  padding:6px 10px;
+  font-size:14px;
+  font-weight:700;
+  background:rgba(0,229,255,0.04);
+  color:var(--text);
+  width:120px;
+  text-align:right;
+  font-family:inherit;
+  transition:border-color .15s;
+}
+.pinp:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,0.08)}
+.pval{font-size:20px;font-weight:800;letter-spacing:-.5px;font-family:'Cormorant Garamond',serif}
+.obar{height:3px;background:#f8f9fc;border-radius:2px;margin-top:12px;overflow:hidden}
+.ofill{height:100%;border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+
+/* METRICHE */
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.mc{
+  background:rgba(248,249,252,0.8);
+  border-radius:var(--r);
+  padding:14px;
+  border:1px solid var(--border);
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(8px);
+}
+.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.mc::after{content:'';position:absolute;bottom:0;right:0;width:40px;height:40px;border-radius:50%;opacity:.06;filter:blur(12px)}
+.mc.pos-mc::before{background:linear-gradient(90deg,var(--green),transparent)}
+.mc.pos-mc::after{background:var(--green)}
+.mc.neg-mc::before{background:linear-gradient(90deg,var(--red),transparent)}
+.mc.neg-mc::after{background:var(--red)}
+.mc.warn-mc::before{background:linear-gradient(90deg,var(--amber),transparent)}
+.mc.neu-mc::before{background:linear-gradient(90deg,var(--cyan2),transparent)}
+.mc.neu-mc::after{background:var(--cyan)}
+.mc-icon{font-size:18px;margin-bottom:8px;display:block}
+.mc-l{font-size:9px;color:#637083;margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;line-height:1.3}
+.mc-v{font-size:20px;font-weight:800;line-height:1;letter-spacing:-.5px;font-family:'Cormorant Garamond',serif}
+.mc-s{font-size:9px;color:#a0aab8;margin-top:5px}
+
+/* COLORI */
+.pos{color:var(--green)}.neg{color:var(--red)}.warn{color:var(--amber)}.neu{color:var(--cyan2)}
+
+/* GRAFICO */
+.chart-wrap{padding:12px 16px}
+.chart-legend{display:flex;gap:14px;margin-bottom:10px;flex-wrap:wrap}
+.leg{display:flex;align-items:center;gap:5px;font-size:10px;color:#637083;font-weight:600}
+.leg-dot{width:7px;height:7px;border-radius:50%}
+.chart-row{display:flex;align-items:center;margin-bottom:7px;gap:8px}
+.chart-lbl{font-size:10px;color:#637083;width:26px;text-align:right;flex-shrink:0;font-weight:600}
+.chart-track{flex:1;display:flex;gap:2px;height:14px;align-items:center;background:rgba(0,229,255,0.04);border-radius:4px;overflow:hidden;padding:2px;border:1px solid var(--border)}
+.bar{border-radius:3px;height:100%;min-width:3px;transition:width .4s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,#1a73e8,#60a5fa)}
+/* Barre per tema chiaro */
+.bar-wrap{background:#dde3f0 !important;border-radius:3px}
+.bar.busto{background:linear-gradient(90deg,#1a73e8,#60a5fa) !important;}
+.bar.milano{background:linear-gradient(90deg,#7c3aed,#a78bfa) !important;}
+.bar.pos-bar,.bar.netto{background:linear-gradient(90deg,#0ea472,#34d399) !important;}
+.bar.neg-bar,.bar.uscite{background:linear-gradient(90deg,#f04438,#fb7185) !important;}
+/* Dark mode barre */
+[data-theme="dark"] .bar-wrap{background:#1e2a3a !important;}
+[data-theme="dark"] .bar{background:linear-gradient(90deg,#00c8c8,#00e5ff) !important;}
+[data-theme="dark"] .bar.busto{background:linear-gradient(90deg,#58a6ff,#93c5fd) !important;}
+[data-theme="dark"] .bar.milano{background:linear-gradient(90deg,#a371f7,#c4b5fd) !important;}
+[data-theme="dark"] .bar.pos-bar,[data-theme="dark"] .bar.netto{background:linear-gradient(90deg,#3fb950,#86efac) !important;}
+[data-theme="dark"] .bar.neg-bar,[data-theme="dark"] .bar.uscite{background:linear-gradient(90deg,#f85149,#fca5a5) !important;}
+.chart-val{font-size:10px;font-weight:700;width:46px;text-align:right;flex-shrink:0}
+.saldo-row{display:flex;align-items:center;margin-bottom:6px;gap:8px}
+.saldo-lbl{font-size:10px;color:#637083;width:26px;text-align:right;flex-shrink:0;font-weight:600}
+.saldo-track{flex:1;position:relative;height:10px;background:#dde3f0;border-radius:5px;overflow:hidden}
+[data-theme="dark"] .saldo-track{background:#1e2a3a}
+.saldo-bar{position:absolute;top:0;height:100%}
+.saldo-zero{position:absolute;top:0;bottom:0;width:2px;background:#a0aab8;z-index:2}
+[data-theme="dark"] .saldo-zero{background:#3a5570}
+.saldo-val{font-size:10px;font-weight:700;width:46px;text-align:right;flex-shrink:0}
+
+/* SEG */
+.seg{
+  display:flex;
+  background:rgba(248,249,252,0.9);
+  border-radius:var(--rs);
+  padding:3px;
+  margin-bottom:14px;
+  border:1px solid var(--border);
+}
+.stab{
+  flex:1;padding:8px 4px;border:none;background:none;border-radius:6px;
+  font-size:11px;font-weight:600;color:#637083;cursor:pointer;
+  font-family:inherit;transition:all .2s;
+}
+.stab.on{background:rgba(0,229,255,0.1);color:var(--cyan);border:1px solid rgba(0,229,255,0.2)}
+
+/* LISTA SPESE */
+.lrow{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s}
+.lrow:last-child{border-bottom:none}
+.lrow:active{background:rgba(0,229,255,0.04)}
+.ll{flex:1}.ll-t{font-size:13px;font-weight:500}.ll-s{font-size:11px;color:#637083;margin-top:2px}
+.lr{text-align:right;flex-shrink:0}.lr-v{font-size:14px;font-weight:700}.lr-p{font-size:10px;color:#a0aab8;margin-top:2px}
+.cat-l{
+  padding:6px 16px;font-size:9px;font-weight:700;color:var(--cyan2);
+  text-transform:uppercase;letter-spacing:.1em;
+  background:rgba(0,229,255,0.03);border-bottom:1px solid var(--border);
+}
+.tot-row{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;background:rgba(0,229,255,0.03);font-weight:800;font-size:15px;border-top:1px solid var(--border)}
+.add-btn{display:block;width:100%;padding:12px;border:none;background:none;font-size:12px;color:var(--cyan);font-weight:700;cursor:pointer;text-align:center;font-family:inherit;border-top:1px solid var(--border);transition:background .15s}
+.add-btn:active{background:rgba(0,229,255,0.04)}
+
+/* STANZE */
+.sbl{padding:12px 16px;border-bottom:1px solid var(--border)}
+.sbl:last-child{border-bottom:none}
+.sr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sid{font-size:13px;font-weight:800;width:28px;color:var(--cyan)}
+.sinf{flex:1}.sn{font-size:13px;font-weight:600}.sd{font-size:11px;color:#637083;margin-top:2px}
+.sbtn{padding:5px 11px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid;cursor:pointer;font-family:inherit}
+.socc{background:var(--gl);color:var(--green);border-color:rgba(63,185,80,.3)}
+.slib{background:var(--rl);color:var(--red);border-color:rgba(248,81,73,.3)}
+.sinps{display:flex;gap:8px}
+.sinps input{flex:1;border:1px solid var(--border2);border-radius:var(--rs);padding:6px 10px;font-size:12px;background:rgba(0,229,255,0.03);color:var(--text);font-family:inherit}
+.sinps input:focus{outline:none;border-color:var(--cyan)}
+
+/* GRIGLIA OCC */
+.occ-table{width:100%;border-collapse:collapse;font-size:11px}
+.occ-table th{padding:5px 3px;text-align:center;color:#637083;font-size:10px;font-weight:700;border-bottom:1px solid var(--border)}
+.occ-table th:first-child{text-align:left;padding-left:12px}
+.occ-table td{padding:5px 3px;text-align:center;cursor:pointer;border-bottom:1px solid rgba(0,200,200,0.06)}
+.occ-table td:first-child{text-align:left;padding-left:12px;font-weight:700;cursor:default;color:var(--text)}
+.occ-tot{font-weight:700;font-size:11px}
+.eur-row td{font-size:9px;font-weight:700;color:var(--green);background:rgba(63,185,80,.04)}
+
+/* FISCALE */
+.frow{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px}
+.frow:last-child{border-bottom:none}
+.flbl{color:#637083;flex:1;padding-right:8px;font-size:12px;font-weight:500}
+.fval{font-weight:700;font-size:14px;font-family:'Cormorant Garamond',serif}
+.finp{border:1px solid var(--border2);border-radius:var(--rs);padding:6px 10px;font-size:14px;font-weight:700;text-align:right;background:rgba(0,229,255,0.04);color:var(--text);width:115px;font-family:inherit}
+.finp:focus{outline:none;border-color:var(--cyan)}
+.ftot{background:rgba(0,229,255,0.04);border-top:1px solid var(--border2)}
+.info{border-radius:var(--rs);padding:10px 14px;margin-bottom:13px;font-size:11px;line-height:1.6;font-weight:500;display:flex;gap:8px}
+.ib{background:rgba(88,166,255,0.07);color:var(--blue);border:1px solid rgba(88,166,255,.2)}
+.ig{background:rgba(63,185,80,0.06);color:var(--green);border:1px solid rgba(63,185,80,.2)}
+.info svg{flex-shrink:0;margin-top:1px}
+
+/* SCADENZE */
+.scad-r{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.scad-r:last-child{border-bottom:none}
+.scad-d{font-size:12px;font-weight:700}
+.scad-v{font-size:11px;color:#637083;margin-top:2px}
+
+/* ROI */
+.roi-row{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;border-bottom:1px solid var(--border);font-size:13px}
+.roi-row:last-child{border-bottom:none}
+.roi-lbl{color:#637083;font-size:12px;font-weight:500}
+.roi-val{font-weight:700;font-size:14px;font-family:'Cormorant Garamond',serif}
+.roi-big{text-align:center;padding:24px 16px;background:rgba(0,229,255,0.03);border-top:1px solid var(--border)}
+.roi-pct{font-size:60px;font-weight:800;line-height:1;letter-spacing:-3px;font-family:'Cormorant Garamond',serif}
+.roi-sub{font-size:11px;color:#637083;margin-top:6px;font-weight:500}
+
+/* SHEET */
+#sheet{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);backdrop-filter:blur(6px)}
+.sh-pan{
+  position:absolute;bottom:0;left:0;right:0;
+  background:#f1f3f8;
+  border-radius:20px 20px 0 0;
+  padding:20px 18px 40px;
+  max-height:82vh;overflow-y:auto;
+  border-top:1px solid var(--border2);
+}
+@media(min-width:600px){
+  .sh-pan{top:50%;bottom:auto;left:50%;right:auto;transform:translate(-50%,-50%);width:420px;border-radius:16px;border:1px solid var(--border2)}
+}
+.sh-handle{width:36px;height:3px;background:#f8f9fc;border-radius:2px;margin:0 auto 16px}
+.sh-t{font-size:16px;font-weight:800;margin-bottom:16px;letter-spacing:-.3px;font-family:'Cormorant Garamond',serif}
+.sh-f{margin-bottom:12px}
+.sh-f label{font-size:9px;color:#637083;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:5px;font-weight:700}
+.sh-f input,.sh-f select{width:100%;border:1px solid var(--border2);border-radius:var(--rs);padding:11px 13px;font-size:15px;background:#ffffff;color:var(--text);font-family:inherit}
+.sh-f input:focus,.sh-f select:focus{outline:none;border-color:var(--cyan)}
+.sh-act{display:flex;gap:10px;margin-top:14px}
+.btn{padding:13px;border-radius:var(--rs);border:none;font-size:14px;font-weight:700;cursor:pointer;flex:1;font-family:inherit;transition:opacity .15s}
+.btn:active{opacity:.75}
+.btn-p{background:var(--cyan2);color:#06090f}
+.btn-s{background:#ffffff;color:var(--text);border:1px solid var(--border)}
+.btn-d{background:var(--rl);color:var(--red);border:1px solid rgba(248,81,73,.3);margin-top:10px;width:100%;display:none}
+
+/* DESKTOP ENHANCEMENT */
+@media(min-width:700px){
+  .hero-section{padding:36px 24px 28px}
+  .hero-logo{width:200px;height:200px}
+  .hero-title{font-size:42px}
+  .top-info h1{font-size:20px}
+  .main{padding:20px 24px}
+  .metrics{grid-template-columns:1fr 1fr 1fr 1fr}
+  .dati-grid{grid-template-columns:1fr 1fr 1fr}
+}
+
+/* DIVIDER */
+.divider{
+  display:flex;align-items:center;gap:10px;margin:20px 0 16px;
+}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.divider span{font-size:9px;font-weight:700;color:#a0aab8;text-transform:uppercase;letter-spacing:.15em}
+
+/* ── DARK MODE ─────────────────────────────────────── */
+[data-theme="dark"]{
+  --bg:#06090f !important;
+  --s1:#0d1220 !important;
+  --s2:#111827 !important;
+  --s3:#1e2a3a !important;
+  --border:rgba(0,200,200,0.12) !important;
+  --border2:rgba(0,200,200,0.22) !important;
+  --text:#e8f4fb !important;
+  --text2:#7aa8c0 !important;
+  --text3:#3a5570 !important;
+  --cyan:#00e5ff !important;
+  --cyan2:#00c8c8 !important;
+  --busto:#58a6ff !important;
+  --milano:#a371f7 !important;
+}
+[data-theme="dark"] body,[data-theme="dark"] .main,[data-theme="dark"] .sec{
+  background:#06090f !important; color:#e8f4fb !important;
+}
+[data-theme="dark"] .card,[data-theme="dark"] div[style*="border-radius"]{
+  background:#0d1220 !important; border-color:rgba(0,200,200,0.12) !important;
+}
+[data-theme="dark"] .nav{background:rgba(6,9,15,0.95) !important;}
+[data-theme="dark"] .ntab{color:#3a5570 !important;}
+[data-theme="dark"] .ntab.on{color:#00e5ff !important; border-bottom-color:#00e5ff !important;}
+[data-theme="dark"] input,[data-theme="dark"] select{
+  background:#1e2a3a !important; color:#e8f4fb !important; border-color:rgba(0,200,200,0.2) !important;
+}
+[data-theme="dark"] .bar-wrap{background:#1e2a3a !important;}
+[data-theme="dark"] .bar:not(.busto):not(.milano):not(.pos-bar):not(.neg-bar){
+  background:linear-gradient(90deg,#00c8c8,#00e5ff) !important;
+}
+
+/* ── OVERRIDE GLOBALE TEMA CHIARO/* ── OVERRIDE GLOBALE TEMA CHIARO ─────────────────── */
+body, .main, .sec { background:#f1f3f8 !important; color:#0d1b2a !important; }
+.card, [style*="background:var(--s"], 
+div[style*="border-radius"][style*="background"] { 
+  background:#ffffff !important; 
+}
+/* Righe dati nelle card */
+div[style*="display:flex"][style*="justify-content:space-between"] {
+  color:#0d1b2a !important;
+}
+/* Testo secondario */
+span[style*="color:var(--text2)"], span[style*="color:var(--text3)"] {
+  color:#637083 !important;
+}
+/* Label nelle card */
+.card-lbl, [style*="font-size:10px"], [style*="font-size:11px;color"] {
+  color:#637083 !important;
+}
+/* Valori positivi/negativi già colorati - ok */
+/* Separatori */
+hr, [style*="border-top"], [style*="border-bottom:1px solid var(--border)"] {
+  border-color:#e2e6ef !important;
+}
+/* Input */
+input, select, textarea {
+  background:#f8f9fc !important;
+  color:#0d1b2a !important;
+  border-color:#e2e6ef !important;
+}
+/* Header logo top */
+.top { background:#1a2236 !important; }
+.nav { background:#ffffff !important; }
+/* Card section header (BUSTO, MILANO) */
+[style*="color:var(--busto)"] { color:#1a73e8 !important; }
+[style*="color:var(--milano)"] { color:#7c3aed !important; }
+[style*="color:var(--cyan)"] { color:#1a73e8 !important; }
+[style*="color:var(--cyan2)"] { color:#1557b0 !important; }
+/* ROI percentage */
+[style*="font-size:48px"], [style*="font-size:52px"] { color:#0ea472 !important; }
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<div class="top">
+  <div class="top-brand">
+    <!-- Logo B&M -->
+    <svg class="top-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="11" fill="#1a2236"/>
+      <text x="10" y="21" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#ffffff">B</text>
+      <text x="25" y="21" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#ffffff">M</text>
+      <text x="22" y="19" font-family="Georgia,serif" font-size="8" font-weight="400" fill="#f59e0b">&amp;</text>
+      <line x1="7" y1="25" x2="41" y2="25" stroke="#f59e0b" stroke-width="1.2" opacity=".7"/>
+      <text x="24" y="36" text-anchor="middle" font-family="Georgia,serif" font-size="6" fill="#94a3b8" letter-spacing="2">MGMT</text>
+    </svg>
+    <div class="top-info">
+      <h1>B&amp;M Management</h1>
+      <p id="topSub">P.IVA 04055390126 · Forfettario 5% · Busto + Milano</p>
+    </div>
+  </div>
+  <div class="top-btns">
+    <span id="syncBadge" style="display:none;font-size:9px;font-weight:700;padding:3px 8px;border-radius:10px;letter-spacing:.04em"></span>
+    <!-- Solo icone, no testo -->
+    <button class="icon-btn" onclick="cloudLoad()" title="Sincronizza">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+    </button>
+    <button class="icon-btn" onclick="impostaToken()" title="Imposta Token">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+    <button class="icon-btn g" id="bSave" title="Salva">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+    </button>
+    <button class="icon-btn b" id="bExp" title="Esporta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+    </button>
+    <button class="icon-btn" id="bImp" title="Importa">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </button>
+    <button class="icon-btn" id="bTheme" onclick="toggleThemeBM()" title="Tema">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <button class="icon-btn r" id="bReset" title="Reset">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+    </button>
+    <input type="file" id="fIn" accept=".json" style="display:none">
+  </div>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav">
+  <button class="ntab on" data-t="home">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    Home
+  </button>
+  <button class="ntab" data-t="spese">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    Spese
+  </button>
+  <button class="ntab" data-t="stanze">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+    Stanze
+  </button>
+  <button class="ntab" data-t="fiscale">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Fiscale
+  </button>
+  <button class="ntab" data-t="roi">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    ROI
+  </button>
+</div>
+
+<div class="main">
+
+<!-- HOME -->
+<div class="sec on" id="s-home">
+
+  <!-- HEADER STILE LORENZI -->
+  <div id="hero-block" style="background:#ffffff;border:1px solid var(--border);border-radius:var(--r);margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06)">
+
+
+
+    <!-- Main hero layout: logo sx, dati dx -->
+    <div style="display:flex;align-items:center;gap:0;padding:16px 0 20px;position:relative;z-index:2">
+
+      <!-- Logo column stile Lorenzi -->
+      <div style="flex:0 0 auto;padding:16px 16px 16px 20px">
+        <div style="position:relative;display:inline-block">
+          <!-- Logo B&M stile Lorenzi -->
+          <svg style="width:64px;height:64px;display:block" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect width="64" height="64" rx="14" fill="#1a2236"/>
+            <text x="32" y="24" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="1">B</text>
+            <text x="32" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="400" fill="#94a3b8" letter-spacing="3">&amp;M</text>
+            <line x1="12" y1="29" x2="52" y2="29" stroke="#f59e0b" stroke-width="1.5" opacity=".6"/>
+          </svg>
+          <!-- vecchio logo nascosto -->
+          <svg style="display:none" viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="ubg2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#0e1622"/><stop offset="100%" stop-color="#040810"/></radialGradient>
+              <filter id="gl1h" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <filter id="gl2h" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <circle cx="230" cy="230" r="230" fill="url(#ubg2)"/>
+            <g fill="#fff"><circle cx="52" cy="72" r="1" opacity=".6"/><circle cx="115" cy="40" r=".7" opacity=".4"/><circle cx="395" cy="65" r="1" opacity=".55"/><circle cx="35" cy="315" r=".8" opacity=".45"/><circle cx="405" cy="375" r=".8" opacity=".5"/><circle cx="435" cy="255" r=".9" opacity=".4"/><circle cx="22" cy="200" r=".6" opacity=".35"/><circle cx="82" cy="152" r=".5" opacity=".25"/></g>
+            <circle cx="230" cy="230" r="218" fill="none" stroke="#00c8c8" stroke-width=".9" opacity=".3" stroke-dasharray="5 8"/>
+            <circle cx="230" cy="230" r="168" fill="none" stroke="#00c8c8" stroke-width=".5" opacity=".12" stroke-dasharray="2 10"/>
+            <g stroke="#00c8c8" opacity=".6"><line x1="230" y1="12" x2="230" y2="25" stroke-width="1.5"/><line x1="230" y1="435" x2="230" y2="448" stroke-width="1.5"/><line x1="12" y1="230" x2="25" y2="230" stroke-width="1.5"/><line x1="435" y1="230" x2="448" y2="230" stroke-width="1.5"/></g>
+            <g stroke="#00e5ff" fill="none" opacity=".65"><rect x="24" y="24" width="9" height="9" stroke-width="1"/><rect x="427" y="24" width="9" height="9" stroke-width="1"/><rect x="24" y="427" width="9" height="9" stroke-width="1"/><rect x="427" y="427" width="9" height="9" stroke-width="1"/></g>
+            <path id="atoph" d="M 42,230 A 188,188 0 0,1 418,230" fill="none"/>
+            <text font-family="Georgia,'Times New Roman',serif" font-size="17" font-weight="700" fill="#e8f4f8" letter-spacing="7"><textPath href="#atoph" startOffset="8%">B&amp;M  MANAGEMENT</textPath></text>
+            <circle cx="42" cy="230" r="4.5" fill="#00e5ff" opacity=".85"/>
+            <circle cx="418" cy="230" r="4.5" fill="#00e5ff" opacity=".85"/>
+            <polygon points="230,17 236,27 230,37 224,27" fill="#00e5ff" filter="url(#gl2h)" opacity=".95"/>
+            <polygon points="230,423 235,432 230,441 225,432" fill="#00e5ff" opacity=".4"/>
+            <g transform="translate(0,30)">
+              <path d="M 155,86 C 147,82 142,89 142,99 L 142,305 C 142,316 148,321 156,319 C 163,317 167,311 167,301 L 167,99 C 167,89 162,83 155,86 Z" fill="#ddeef5"/>
+              <path d="M 174,106 C 169,104 167,109 167,116 L 167,286 C 167,294 170,297 175,296 C 179,295 181,291 181,284 L 181,116 C 181,109 178,106 174,106 Z" fill="#ddeef5" opacity=".65"/>
+              <path d="M 166,94 L 222,94 C 231,94 236,99 236,106 C 236,113 231,119 222,119 L 166,119 Z" fill="#ddeef5"/>
+              <path d="M 169,99 L 220,99 C 227,99 231,103 231,106 C 231,109 227,114 220,114 L 169,114 Z" fill="#060c14"/>
+              <path d="M 166,178 L 214,178 C 220,178 224,182 224,188 C 224,194 220,198 214,198 L 166,198 Z" fill="#ddeef5"/>
+              <path d="M 169,182 L 212,182 C 217,182 220,185 220,188 C 220,191 217,194 212,194 L 169,194 Z" fill="#060c14"/>
+              <circle cx="208" cy="146" r="16" fill="#060c14"/>
+              <circle cx="208" cy="146" r="16" fill="none" stroke="#ddeef5" stroke-width="4"/>
+              <circle cx="208" cy="146" r="5" fill="#00e5ff" filter="url(#gl1h)"/>
+              <circle cx="208" cy="146" r="2" fill="#060c14"/>
+              <path d="M 142,302 C 128,318 130,339 144,345 C 156,351 171,338 166,323 C 162,311 150,310 147,319 C 144,327 150,336 158,333" fill="none" stroke="#ddeef5" stroke-width="3" stroke-linecap="round"/>
+              <path d="M 155,88 C 143,74 147,57 161,59 C 173,61 175,75 166,83" fill="none" stroke="#ddeef5" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M 322,112 C 306,90 264,87 250,113 C 236,138 252,167 278,178 C 304,189 324,197 326,224 C 329,253 310,279 284,287 C 258,295 235,282 227,265" fill="none" stroke="#ddeef5" stroke-width="23" stroke-linecap="round"/>
+              <path d="M 315,115 C 301,97 266,95 254,116 C 242,140 257,166 282,176 C 307,186 323,196 324,224 C 326,251 309,275 284,282" fill="none" stroke="#060c14" stroke-width="8.5" stroke-linecap="round"/>
+              <circle cx="320" cy="124" r="16" fill="#060c14"/>
+              <circle cx="320" cy="124" r="16" fill="none" stroke="#ddeef5" stroke-width="4.5"/>
+              <circle cx="320" cy="124" r="5.5" fill="#00e5ff" filter="url(#gl1h)"/>
+              <circle cx="320" cy="124" r="2.2" fill="#060c14"/>
+              <circle cx="231" cy="268" r="15" fill="#060c14"/>
+              <circle cx="231" cy="268" r="15" fill="none" stroke="#ddeef5" stroke-width="4.5"/>
+              <circle cx="231" cy="268" r="5.5" fill="#00e5ff" filter="url(#gl1h)"/>
+              <circle cx="231" cy="268" r="2.2" fill="#060c14"/>
+              <path d="M 322,112 C 338,95 336,73 320,69 C 304,65 292,79 300,93 C 306,105 321,103 318,91 C 315,81 304,80 301,88" fill="none" stroke="#ddeef5" stroke-width="3" stroke-linecap="round"/>
+              <path d="M 227,265 C 212,281 215,304 230,308 C 244,312 256,298 249,285 C 243,274 230,277 231,287 C 232,296 242,299 248,293" fill="none" stroke="#ddeef5" stroke-width="3" stroke-linecap="round"/>
+              <path d="M 168,382 L 207,294" fill="none" stroke="#ddeef5" stroke-width="9" stroke-linecap="round"/>
+              <path d="M 168,382 L 207,294" fill="none" stroke="#060c14" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M 246,382 L 207,294" fill="none" stroke="#ddeef5" stroke-width="9" stroke-linecap="round"/>
+              <path d="M 246,382 L 207,294" fill="none" stroke="#060c14" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M 176,355 C 192,348 226,348 240,355" fill="none" stroke="#ddeef5" stroke-width="7" stroke-linecap="round"/>
+              <path d="M 178,355 C 193,349 224,349 238,355" fill="none" stroke="#060c14" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="207" cy="282" r="14" fill="#060c14"/>
+              <circle cx="207" cy="282" r="14" fill="none" stroke="#ddeef5" stroke-width="4"/>
+              <circle cx="207" cy="282" r="5" fill="#00e5ff" filter="url(#gl1h)"/>
+              <circle cx="207" cy="282" r="2" fill="#060c14"/>
+              <path d="M 166,380 C 152,393 153,412 167,416 C 180,420 190,407 183,395 C 177,385 165,387 166,396 C 167,404 177,406 183,400" fill="none" stroke="#ddeef5" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M 272,290 C 267,288 264,292 264,299 L 264,365 C 264,372 268,375 273,374 C 278,373 281,369 281,362 L 281,299 C 281,292 277,288 272,290 Z" fill="#ddeef5"/>
+              <path d="M 264,301 C 255,296 251,287 257,282 C 263,277 271,280 273,288" fill="none" stroke="#ddeef5" stroke-width="5" stroke-linecap="round"/>
+              <path d="M 281,301 C 290,296 294,287 288,282 C 282,277 274,280 273,288" fill="none" stroke="#ddeef5" stroke-width="5" stroke-linecap="round"/>
+              <path d="M 264,361 C 255,366 251,376 257,381 C 263,386 271,383 273,375" fill="none" stroke="#ddeef5" stroke-width="5" stroke-linecap="round"/>
+              <path d="M 281,361 C 290,366 294,376 288,381 C 282,386 274,383 273,375" fill="none" stroke="#ddeef5" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="273" cy="272" r="14" fill="#060c14"/>
+              <circle cx="273" cy="272" r="14" fill="none" stroke="#ddeef5" stroke-width="4"/>
+              <circle cx="273" cy="272" r="5" fill="#00e5ff" filter="url(#gl1h)"/>
+              <circle cx="273" cy="272" r="2" fill="#060c14"/>
+              <path d="M 281,362 C 293,374 291,394 278,397 C 265,400 257,387 264,376 C 270,366 281,369 280,378 C 279,385 271,387 266,382" fill="none" stroke="#ddeef5" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Info column: testo tech a destra del logo -->
+      <div style="flex:1;padding:0 16px 0 8px;min-width:0">
+
+        <!-- Nome principale -->
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:26px;font-weight:700;letter-spacing:1px;line-height:1;color:var(--text);margin-bottom:2px">
+          B<span style="color:var(--cyan)">&amp;</span>M
+        </div>
+        <div style="font-size:9px;color:var(--cyan2);letter-spacing:.3em;text-transform:uppercase;font-weight:700;margin-bottom:14px;opacity:.8">Management · AI</div>
+
+        <!-- KPI rimossi: visibili nel dettaglio sotto -->
+
+        <!-- P.IVA chip -->
+        <div style="margin-top:14px;display:inline-flex;align-items:center;gap:5px;background:rgba(0,229,255,0.05);border:1px solid var(--border);border-radius:6px;padding:4px 9px">
+          <span style="width:5px;height:5px;background:var(--cyan2);border-radius:50%;display:inline-block"></span>
+          <span style="font-size:9px;color:#a0aab8;letter-spacing:.08em;font-weight:600">P.IVA 04055390126</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom databar con linee circuit -->
+    <div style="position:relative;padding:8px 16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span style="font-size:8px;color:#a0aab8;letter-spacing:.12em;text-transform:uppercase;font-weight:700">Forfettario 5%</span>
+        <span style="width:1px;height:10px;background:var(--border)"></span>
+        <span style="font-size:8px;color:#a0aab8;letter-spacing:.12em;text-transform:uppercase;font-weight:700">REA VA-398745</span>
+        <span style="width:1px;height:10px;background:var(--border)"></span>
+        <span style="font-size:8px;color:#a0aab8;letter-spacing:.12em;text-transform:uppercase;font-weight:700">Locazione + AI</span>
+      </div>
+      <!-- Animated scan line -->
+
+    </div>
+
+  </div>
+
+  <style>
+    @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 6px var(--green)}50%{opacity:.4;box-shadow:0 0 2px var(--green)}}
+    @keyframes scanline{0%{top:-10%}100%{top:110%}}
+  </style>
+  <script>
+    // Hero date
+    (function(){
+      var d=new Date();
+      var days=['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+      var months=['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+      var hd=document.getElementById('heroDate');if(hd)hd.textContent=days[d.getDay()]+' '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
+    })();
+    // Hero KPI updater
+    function updateHeroKPI(){
+      try{
+        var e=entReali(),u=uscite();
+        var saldo=e.tot-u.tot;
+        document.getElementById('h-busto').textContent=F(e.b)+'/mese';
+        document.getElementById('h-milano').textContent=F(e.m)+'/mese';
+        document.getElementById('h-saldo').textContent=F(saldo)+'/mese';
+        document.getElementById('h-saldo').style.color=saldo>=0?'var(--green)':'var(--red)';
+        var totOcc=stanze.busto.filter(function(s){return s.occupata;}).length+stanze.milano.filter(function(s){return s.occupata;}).length;
+        document.getElementById('h-occ-pct').textContent=totOcc+'/6';
+      }catch(e){}
+    }
+    setTimeout(updateHeroKPI,900);
+  </script>
+
+  <!-- Dati impresa -->
+  <div class="card">
+    <div class="card-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      Dati impresa
+    </div>
+    <div class="dati-grid">
+      <div class="dati-cell"><span class="dati-lbl">Titolare</span><span class="dati-val">Solari Fabio</span></div>
+      <div class="dati-cell"><span class="dati-lbl">Ragione sociale</span><span class="dati-val">B&amp;M di F.S.</span></div>
+      <div class="dati-cell"><span class="dati-lbl">P.IVA</span><span class="dati-val">04055390126</span></div>
+      <div class="dati-cell"><span class="dati-lbl">REA</span><span class="dati-val">VA-398745</span></div>
+      <div class="dati-cell"><span class="dati-lbl">Regime fiscale</span><span class="dati-val">Forfettario 5% (fino 2029)</span></div>
+      <div class="dati-cell"><span class="dati-lbl">Attività</span><span class="dati-val">Locazione + AI/Marketing</span></div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <div><strong>Sincronizzazione PC ↔ iPhone:</strong> Esporta → salva JSON su iCloud/email → sull'altro device Importa.</div>
+  </div>
+
+  <div class="prop b">
+    <div class="prop-header">
+      <div>
+        <div class="prop-t"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--busto)" stroke-width="2" style="vertical-align:middle;margin-right:5px"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>Busto — Via Gussoni 1</div>
+        <div class="prop-s">3 stanze · spese a carico tuo · mutuo €900/mese</div>
+      </div>
+      <span class="prop-badge badge-b">VA</span>
+    </div>
+
+
+    <div class="prow"><span class="plbl">Entrata mensile</span><span class="pval pos" id="eB">€1.650</span></div>
+    <div class="obar"><div class="ofill" id="oB" style="background:var(--busto);width:100%"></div></div>
+  </div>
+
+  <div class="prop m">
+    <div class="prop-header">
+      <div>
+        <div class="prop-t"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--milano)" stroke-width="2" style="vertical-align:middle;margin-right:5px"><polygon points="12 2 2 22 22 22"/></svg>Milano — Via Giussani 15</div>
+        <div class="prop-s">3 stanze · spese a carico tuo · nessun mutuo</div>
+      </div>
+      <span class="prop-badge badge-m">MI</span>
+    </div>
+
+    <div class="prow"><span class="plbl">Entrata mensile</span><span class="pval pos" id="eM">€1.650</span></div>
+    <div class="obar"><div class="ofill" id="oM" style="background:var(--milano);width:100%"></div></div>
+  </div>
+
+  <div class="metrics" id="metrics"></div>
+
+  <div class="card">
+    <div class="card-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Entrate vs uscite mensili
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-legend">
+        <span class="leg"><span class="leg-dot" style="background:var(--busto)"></span>Busto</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--milano)"></span>Milano</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--red);opacity:.6"></span>Uscite</span>
+      </div>
+      <div id="chartEU"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+      Saldo cumulativo netto
+    </div>
+    <div class="chart-wrap" id="chartSaldo"></div>
+  </div>
+</div>
+
+<!-- SPESE -->
+<div class="sec" id="s-spese" style="display:none">
+  <div class="seg" id="segS">
+    <button class="stab on" data-s="busto"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>Busto</button>
+    <button class="stab" data-s="milano"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><polygon points="12 2 2 22 22 22"/><line x1="12" y1="10" x2="12" y2="16"/><line x1="12" y1="19" x2="12.01" y2="19"/></svg>Milano</button>
+    <button class="stab" data-s="comuni"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Comuni</button>
+  </div>
+  <div id="infoSpese" class="info ib"></div>
+  <div class="card" id="listaSpese"></div>
+</div>
+
+<!-- STANZE -->
+<div class="sec" id="s-stanze" style="display:none">
+  <div class="info ib">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Tocca <strong>Occupata / Libera</strong> per cambiare stato. Tocca i dot nella griglia per il singolo mese.
+  </div>
+  <div class="card" style="margin-bottom:13px">
+    <div class="card-h" style="color:var(--busto)">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      Busto Arsizio
+    </div>
+    <div id="stB"></div>
+  </div>
+  <div class="card" style="margin-bottom:13px">
+    <div class="card-h" style="color:var(--milano)">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      Milano
+    </div>
+    <div id="stM"></div>
+  </div>
+  <div class="card">
+    <div class="card-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Occupazione mensile
+    </div>
+    <div style="overflow-x:auto;padding:6px 4px"><table class="occ-table" id="tOcc"></table></div>
+  </div>
+</div>
+
+<!-- FISCALE -->
+<div class="sec" id="s-fiscale" style="display:none">
+  <div class="info ig">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <div><strong>B&amp;M di F.S.</strong> · P.IVA 04055390126 · Forfettario 5% (2025→2029) · Coeff. 40% · No IVA su fatture</div>
+  </div>
+  <div class="card">
+    <div class="card-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Imposta sostitutiva 5%
+    </div>
+    <div class="frow"><span class="flbl">Canoni locazione annui</span><span class="fval pos" id="fCan">—</span></div>
+    <div class="frow"><span class="flbl">Consulenza AI/Mktg (€/anno)</span><input class="finp" type="number" inputmode="decimal" id="fCons" value="0"></div>
+    <div class="frow"><span class="flbl">Fatturato totale</span><span class="fval" id="fFatt">—</span></div>
+    <div class="frow"><span class="flbl">Imponibile (×40%)</span><span class="fval" id="fImp">—</span></div>
+    <div class="frow"><span class="flbl">Imposta sostitutiva 5%</span><span class="fval neg" id="fTax">—</span></div>
+    <div class="frow"><span class="flbl">Pressione fiscale</span><span class="fval warn" id="fPct">—</span></div>
+  </div>
+  <div class="card">
+    <div class="card-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Netto annuo dopo imposte
+    </div>
+    <div class="frow"><span class="flbl">Entrate lorde annue</span><span class="fval pos" id="fLorde">—</span></div>
+    <div class="frow"><span class="flbl">Spese totali annue</span><span class="fval neg" id="fSpese">—</span></div>
+    <div class="frow"><span class="flbl">Imposta sostitutiva 5%</span><span class="fval neg" id="fT2">—</span></div>
+    <div class="frow"><span class="flbl">Contributi INPS (€/anno)</span><input class="finp" type="number" inputmode="decimal" id="fInps" value="3500"></div>
+    <div class="frow ftot"><span class="flbl" style="font-weight:800;font-size:14px;color:var(--text)">NETTO FINALE</span><span class="fval" id="fNetto" style="font-size:24px;letter-spacing:-.5px">—</span></div>
+  </div>
+  <div class="card">
+    <div class="card-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Scadenze fiscali 2026
+    </div>
+    <div id="scad"></div>
+  </div>
+</div>
+
+<!-- ROI -->
+<div class="sec" id="s-roi" style="display:none">
+  <div class="card" style="margin-bottom:13px">
+    <div class="card-h" style="color:var(--busto)">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      Busto — Rendimento
+    </div>
+    <div id="roiB"></div>
+  </div>
+  <div class="card">
+    <div class="card-h" style="color:var(--milano)">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      Milano — Rendimento
+    </div>
+    <div id="roiM"></div>
+  </div>
+  <div class="card">
+    <div class="card-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Confronto annuo
+    </div>
+    <div class="chart-wrap" id="chartRoi"></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- SHEET -->
+<div id="sheet">
+  <div class="sh-pan">
+    <div class="sh-handle"></div>
+    <div class="sh-t" id="shT">Modifica</div>
+    <div class="sh-f"><label>Descrizione</label><input type="text" id="shV" autocomplete="off"></div>
+    <div class="sh-f"><label>Previsto €/mese</label><input type="number" inputmode="decimal" id="shP"></div>
+    <div class="sh-f"><label>Effettivo €/mese</label><input type="number" inputmode="decimal" id="shE"></div>
+    <div class="sh-f"><label>Note</label><input type="text" id="shN" autocomplete="off"></div>
+    <div class="sh-act">
+      <button class="btn btn-s" id="shAnn">Annulla</button>
+      <button class="btn btn-p" id="shSav">Salva</button>
+    </div>
+    <button class="btn btn-d" id="shDel">Elimina voce</button>
+  </div>
+</div>
+
+<style>
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+</style>
+
+<script>
+var SH=['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+var curTab='home',curSec='busto',editIdx=-1,editSec='';
+var TABS=['home','spese','stanze','fiscale','roi'];
+var stanze={
+  busto:[{id:'B1',canone:550,inquilino:'',da:'',occupata:true},{id:'B2',canone:550,inquilino:'',da:'',occupata:true},{id:'B3',canone:550,inquilino:'',da:'',occupata:true}],
+  milano:[{id:'M1',canone:550,inquilino:'',da:'',occupata:true},{id:'M2',canone:550,inquilino:'',da:'',occupata:true},{id:'M3',canone:550,inquilino:'',da:'',occupata:true}]
+};
+var occ={B1:[1,1,1,1,1,1,1,1,1,1,1,1],B2:[1,1,1,1,1,1,1,1,1,1,1,1],B3:[1,1,1,1,1,1,1,1,1,1,1,1],M1:[1,1,1,1,1,1,1,1,1,1,1,1],M2:[1,1,1,1,1,1,1,1,1,1,1,1],M3:[1,1,1,1,1,1,1,1,1,1,1,1]};
+var can={B1:[550,550,550,550,550,550,550,550,550,550,550,550],B2:[550,550,550,550,550,550,550,550,550,550,550,550],B3:[550,550,550,550,550,550,550,550,550,550,550,550],M1:[550,550,550,550,550,550,550,550,550,550,550,550],M2:[550,550,550,550,550,550,550,550,550,550,550,550],M3:[550,550,550,550,550,550,550,550,550,550,550,550]};
+function dB(){return[{cat:'Mutuo',voce:'Rata mutuo bancario',prev:900,eff:0,note:'mensile'},{cat:'Energia',voce:'Energia elettrica',prev:125,eff:0,note:'stima'},{cat:'Utenze',voce:'Internet / Wi-Fi',prev:30,eff:0,note:'mensile'},{cat:'Manutenzione',voce:'Giardino (4×€225/anno)',prev:75,eff:0,note:'€900/anno'},{cat:'Manutenzione',voce:'Manutenzione impianti',prev:29,eff:0,note:'€350/anno'},{cat:'Assicurazione',voce:'Assicurazione Busto',prev:33,eff:0,note:'€400/anno'},{cat:'Altro',voce:'Videocamera sorveglianza',prev:10,eff:0,note:'mensile'},{cat:'Altro',voce:'Fondo imprevisti',prev:100,eff:0,note:'accantonamento'}];}
+function dM(){return[{cat:'Condominio',voce:'Spese condominiali',prev:125,eff:0,note:'€1.500/anno'},{cat:'Riscaldamento',voce:'Gas / riscaldamento',prev:125,eff:0,note:'€1.500/anno'},{cat:'Energia',voce:'Energia elettrica',prev:60,eff:0,note:'mensile'},{cat:'Utenze',voce:'Internet / Wi-Fi',prev:30,eff:0,note:'mensile'},{cat:'Manutenzione',voce:'Manutenzione ordinaria',prev:83,eff:0,note:'€1.000/anno'},{cat:'Assicurazione',voce:'Assicurazione Milano',prev:17,eff:0,note:'€200/anno'},{cat:'Altro',voce:'Fondo imprevisti',prev:80,eff:0,note:'accantonamento'}];}
+function dC(){return[{cat:'Professionale',voce:'Commercialista / CAF',prev:80,eff:0,note:'mensile'},{cat:'Fiscale',voce:'Accantonamento INPS',prev:292,eff:0,note:'€3.500/anno'}];}
+var sp={busto:null,milano:null,comuni:null};
+function gSp(s){if(!sp[s])sp[s]=s==='busto'?dB():s==='milano'?dM():dC();return sp[s];}
+function gV(id){var e=document.getElementById(id);if(!e)return 0;var v=parseFloat(e.value)||parseFloat(e.getAttribute('value'))||0;return isNaN(v)?0:v;}
+function N(n){return Math.round(n).toLocaleString('it-IT');}
+function F(n){return'€'+N(n);}
+function sv(id,v,c){var e=document.getElementById(id);if(!e)return;e.textContent=v;if(c){var m=e.className.replace(/\b(pos|neg|warn|neu)\b/g,'').trim();e.className=m+' '+c;}}
+function entReali(){var b=stanze.busto.reduce(function(a,s){var tot=0;for(var i=0;i<12;i++)tot+=occ[s.id][i]?(can[s.id]?can[s.id][i]:s.canone):0;return a+tot/12;},0);var m=stanze.milano.reduce(function(a,s){var tot=0;for(var i=0;i<12;i++)tot+=occ[s.id][i]?(can[s.id]?can[s.id][i]:s.canone):0;return a+tot/12;},0);return{b:Math.round(b),m:Math.round(m),tot:Math.round(b+m)};}
+function entMese(mes){var b=stanze.busto.reduce(function(a,s){return a+(occ[s.id][mes]?(can[s.id]?can[s.id][mes]:s.canone):0);},0);var m=stanze.milano.reduce(function(a,s){return a+(occ[s.id][mes]?(can[s.id]?can[s.id][mes]:s.canone):0);},0);return{b:b,m:m,tot:b+m};}
+function entAnnoReali(){var b=0,m=0;for(var i=0;i<12;i++){var e=entMese(i);b+=e.b;m+=e.m;}return{b:b,m:m,tot:b+m};}
+function uscite(){var b=gSp('busto').reduce(function(a,r){return a+(r.prev||0);},0);var m=gSp('milano').reduce(function(a,r){return a+(r.prev||0);},0);var c=gSp('comuni').reduce(function(a,r){return a+(r.prev||0);},0);return{b:b,m:m,c:c,tot:b+m+c};}
+function getBarColor(type){
+  var dark=document.documentElement.getAttribute('data-theme')==='dark';
+  var colors={
+    busto: dark?'linear-gradient(90deg,#58a6ff,#93c5fd)':'linear-gradient(90deg,#1a73e8,#60a5fa)',
+    milano: dark?'linear-gradient(90deg,#a371f7,#c4b5fd)':'linear-gradient(90deg,#7c3aed,#a78bfa)',
+    red: dark?'linear-gradient(90deg,#f85149,#fca5a5)':'linear-gradient(90deg,#f04438,#fb7185)',
+    green: dark?'linear-gradient(90deg,#3fb950,#86efac)':'linear-gradient(90deg,#0ea472,#34d399)',
+    neutral: dark?'linear-gradient(90deg,#00c8c8,#00e5ff)':'linear-gradient(90deg,#1a73e8,#60a5fa)'
+  };
+  return colors[type]||colors.neutral;
+}
+function getBarWrapBg(){
+  return document.documentElement.getAttribute('data-theme')==='dark'?'#1e2a3a':'#dde3f0';
+}
+function renderChartEU(){var e=entReali(),u=uscite();var items=[{l:'Ent B',v:e.b,t:'busto'},{l:'Ent M',v:e.m,t:'milano'},{l:'Usc.',v:u.tot,t:'red'}];var maxV=Math.max.apply(null,items.map(function(x){return x.v;}));if(!maxV)maxV=1;var wrap=getBarWrapBg();var html='';items.forEach(function(it){var pct=Math.round(it.v/maxV*100);html+='<div class="chart-row"><span class="chart-lbl">'+it.l+'</span><div class="chart-track" style="background:'+wrap+';border-radius:3px"><div class="bar" style="width:'+pct+'%;background:'+getBarColor(it.t)+'"></div></div><span class="chart-val">'+F(it.v)+'</span></div>';});document.getElementById('chartEU').innerHTML=html;}
+function renderChartSaldo(){
+  var u=uscite(),vals=[];
+  for(var i=0;i<12;i++){var e=entMese(i);vals.push(e.tot-u.tot);}
+  var maxA=vals.reduce(function(a,v){return Math.max(a,Math.abs(v));},1);
+  if(!maxA)maxA=1;
+  var wrap=getBarWrapBg();
+  var html='';
+  for(var i=0;i<12;i++){
+    var v=vals[i];
+    var pct=Math.max(2,Math.round(Math.abs(v)/maxA*100));
+    var c=v>=0?getBarColor('green'):getBarColor('red');
+    html+='<div class="chart-row">'
+      +'<span class="chart-lbl">'+SH[i]+'</span>'
+      +'<div class="chart-track" style="background:'+wrap+';border-radius:3px">'
+      +'<div class="bar" style="width:'+pct+'%;background:'+c+'"></div>'
+      +'</div>'
+      +'<span class="chart-val '+(v>=0?'pos':'neg')+'">'+F(v)+'</span>'
+      +'</div>';
+  }
+  document.getElementById('chartSaldo').innerHTML=html;
+}
+function renderChartRoi(){var e=entAnnoReali(),u=uscite(),half=u.c*12/2;var nB=e.b-u.b*12-half,nM=e.m-u.m*12-half;var wrap=getBarWrapBg();var items=[{l:'B entrate',v:e.b,t:'busto'},{l:'B spese',v:u.b*12+half,t:'neutral'},{l:'B netto',v:nB,t:nB>=0?'busto':'red'},{l:'M entrate',v:e.m,t:'milano'},{l:'M spese',v:u.m*12+half,t:'neutral'},{l:'M netto',v:nM,t:nM>=0?'milano':'red'}];var maxV=Math.max.apply(null,items.map(function(x){return x.v;}));if(!maxV)maxV=1;var html='';items.forEach(function(it){var pct=Math.round(it.v/maxV*100);html+='<div class="chart-row"><span class="chart-lbl" style="width:50px;font-size:9px">'+it.l+'</span><div class="chart-track" style="background:'+wrap+';border-radius:3px"><div class="bar" style="width:'+pct+'%;background:'+getBarColor(it.t)+'"></div></div><span class="chart-val">'+F(it.v)+'</span></div>';});document.getElementById('chartRoi').innerHTML=html;}
+function renderHome(){
+  var e=entReali(),u=uscite();
+  var oB=stanze.busto.filter(function(s){return s.occupata;}).length;
+  var oM=stanze.milano.filter(function(s){return s.occupata;}).length;
+  document.getElementById('eB').textContent=F(e.b);
+  document.getElementById('eM').textContent=F(e.m);
+  if(document.getElementById('oB')) document.getElementById('oB').style.width=Math.round(oB/3*100)+'%';
+  if(document.getElementById('oM')) document.getElementById('oM').style.width=Math.round(oM/3*100)+'%';
+  document.getElementById('topSub').textContent='P.IVA 04055390126 · Busto '+oB+'/3 · Milano '+oM+'/3';
+  var saldo=e.tot-u.tot,tax=e.tot*12*.4*.05,netto=saldo*12-tax-gV('fInps');
+  // Aggiorna hero con spese
+  var elSpese=document.getElementById('heroSpese');
+  if(elSpese) elSpese.textContent=F(u.tot);
+  var elSaldo=document.getElementById('heroSaldo');
+  if(elSaldo){elSaldo.textContent=F(saldo);elSaldo.className='hero-val '+(saldo>=0?'pos':'neg');}
+  var icons=[
+    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+  ];
+  var mcs=[
+    {l:'Entrate mensili',v:e.tot,c:'pos',s:'Busto '+F(e.b)+' · Milano '+F(e.m),ic:icons[0],mc:'pos-mc'},
+    {l:'Spese mensili',v:u.tot,c:'neg',s:'fissi + variabili',ic:icons[1],mc:'neg-mc'},
+    {l:'Saldo netto mensile',v:saldo,c:saldo>=0?'pos':'neg',s:'prima delle imposte',ic:icons[2],mc:saldo>=0?'pos-mc':'neg-mc'},
+    {l:'Netto annuo stimato',v:netto,c:netto>=0?'pos':'neg',s:'dopo 5% e INPS',ic:icons[3],mc:netto>=0?'pos-mc':'neg-mc'}
+  ];
+  document.getElementById('metrics').innerHTML=mcs.map(function(r){
+    return'<div class="mc '+r.mc+'"><span class="mc-icon">'+r.ic+'</span><div class="mc-l">'+r.l+'</div><div class="mc-v '+r.c+'">'+F(r.v)+'</div><div class="mc-s">'+r.s+'</div></div>';
+  }).join('');
+  renderChartEU();renderChartSaldo();
+}
+function renderSpese(){var info={busto:'Costi fissi <strong>Busto</strong> — a carico tuo come proprietario.',milano:'Costi fissi <strong>Milano</strong> — a carico tuo.',comuni:'Spese <strong>comuni</strong> — commercialista, accantonamenti.'};document.getElementById('infoSpese').innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>'+info[curSec]+'</div>';var rows=gSp(curSec),card=document.getElementById('listaSpese');card.innerHTML='';var lastC='',totP=0;for(var i=0;i<rows.length;i++){var r=rows[i];if(r.cat!==lastC){lastC=r.cat;var cd=document.createElement('div');cd.className='cat-l';cd.textContent=r.cat;card.appendChild(cd);}totP+=r.prev||0;var d=document.createElement('div');d.className='lrow';d.innerHTML='<div class="ll"><div class="ll-t">'+r.voce+'</div><div class="ll-s">'+(r.note||'')+'</div></div><div class="lr"><div class="lr-v '+(r.eff?'neg':'')+'">'+( r.eff?F(r.eff):'—')+'</div><div class="lr-p">prev: '+F(r.prev||0)+'</div></div>';(function(idx){d.addEventListener('click',function(){openEdit(idx);});d.addEventListener('touchend',function(e){e.preventDefault();openEdit(idx);});})(i);card.appendChild(d);}var tot=document.createElement('div');tot.className='tot-row';tot.innerHTML='<span style="color:#637083;font-size:12px;font-weight:600">TOTALE PREVISTO</span><span class="neg">'+F(totP)+'</span>';card.appendChild(tot);var ab=document.createElement('button');ab.className='add-btn';ab.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Aggiungi spesa';ab.addEventListener('click',openAdd);card.appendChild(ab);}
+function openEdit(i){editIdx=i;editSec=curSec;var r=gSp(curSec)[i];document.getElementById('shT').textContent=r.voce||'Modifica';document.getElementById('shV').value=r.voce||'';document.getElementById('shP').value=r.prev||'';document.getElementById('shE').value=r.eff||'';document.getElementById('shN').value=r.note||'';document.getElementById('shDel').style.display='block';document.getElementById('sheet').style.display='block';}
+function openAdd(){var rows=gSp(curSec);rows.push({cat:'Altro',voce:'',prev:0,eff:0,note:''});editIdx=rows.length-1;editSec=curSec;document.getElementById('shT').textContent='Nuova spesa';document.getElementById('shV').value='';document.getElementById('shP').value='';document.getElementById('shE').value='';document.getElementById('shN').value='';document.getElementById('shDel').style.display='none';document.getElementById('sheet').style.display='block';}
+function closeEdit(){document.getElementById('sheet').style.display='none';renderSpese();}
+function saveEdit(){var r=gSp(editSec)[editIdx];r.voce=document.getElementById('shV').value||r.voce;r.prev=parseFloat(document.getElementById('shP').value)||0;r.eff=parseFloat(document.getElementById('shE').value)||0;r.note=document.getElementById('shN').value||'';document.getElementById('sheet').style.display='none';render();}
+function delSpesa(){if(!confirm('Eliminare?'))return;gSp(editSec).splice(editIdx,1);document.getElementById('sheet').style.display='none';render();}
+function renderStanze(){function build(prop,elId){var c=document.getElementById(elId);c.innerHTML='';stanze[prop].forEach(function(s,i){var b=document.createElement('div');b.className='sbl';b.innerHTML='<div class="sr"><div class="sid">'+s.id+'</div><div class="sinf"><div class="sn">'+(s.inquilino||'<span style="color:#a0aab8">nessun inquilino</span>')+'</div><div class="sd">€'+s.canone+'/mese'+(s.da?' · da '+s.da:'')+'</div></div><button class="sbtn '+(s.occupata?'socc':'slib')+'" data-p="'+prop+'" data-i="'+i+'">'+(s.occupata?'<svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="var(--green)"/></svg> Occupata':'<svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="none" stroke="var(--red)" stroke-width="1.5"/></svg> Libera')+'</button></div><div class="sinps"><input type="text" placeholder="Nome inquilino" value="'+s.inquilino+'" data-p="'+prop+'" data-i="'+i+'" data-f="inquilino"><input type="text" placeholder="Da (Gen 2026)" value="'+s.da+'" data-p="'+prop+'" data-i="'+i+'" data-f="da"><input type="number" placeholder="Canone €/mese" value="'+s.canone+'" data-p="'+prop+'" data-i="'+i+'" data-f="canone" style="background:var(--s3);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-size:13px;font-family:inherit"></div>';c.appendChild(b);});}build('busto','stB');build('milano','stM');var tb=document.getElementById('tOcc');tb.innerHTML='';var SHs=['G','F','M','A','M','G','L','A','S','O','N','D'];var hr=document.createElement('tr');hr.innerHTML='<th>Stanza</th><th>Tot</th>'+SHs.map(function(s){return'<th>'+s+'</th>';}).join('');tb.appendChild(hr);stanze.busto.concat(stanze.milano).forEach(function(s){var tot=occ[s.id].reduce(function(a,v){return a+v;},0);var tr=document.createElement('tr');tr.innerHTML='<td><strong>'+s.id+'</strong>'+(s.inquilino?' <span style="font-size:9px;color:#a0aab8">'+s.inquilino+'</span>':'')+'</td><td class="occ-tot '+(tot>=10?'pos':'warn')+'">'+tot+'</td>'+occ[s.id].map(function(v,m){return'<td data-id="'+s.id+'" data-m="'+m+'"><svg width="14" height="14" viewBox="0 0 14 14">'+(v?'<circle cx="7" cy="7" r="5" fill="var(--green)" opacity=".85"/>':'<circle cx="7" cy="7" r="5" fill="none" stroke="var(--text3)" stroke-width="1.5"/>')+'</svg></td>';}).join('');tb.appendChild(tr);});var tr2=document.createElement('tr');tr2.className='eur-row';tr2.innerHTML='<td colspan="2" style="font-size:9px;padding-left:10px">€/mese</td>'+SHs.map(function(_,m){var em=entMese(m);return'<td>'+Math.round(em.tot/1000)+'k</td>';}).join('');tb.appendChild(tr2);}
+function renderFiscale(){var e=entReali(),u=uscite();var canoni=e.tot*12,cons=parseFloat(document.getElementById('fCons').value)||0;var fatt=canoni+cons,imp=fatt*.4*.05,inps=parseFloat(document.getElementById('fInps').value)||3500;var netto=canoni-u.tot*12-imp-inps+cons;sv('fCan',F(canoni),'pos');sv('fFatt',F(fatt));sv('fImp',F(fatt*.4));sv('fTax',F(imp),'neg');sv('fPct',Math.round(imp/fatt*100)+'%','warn');sv('fLorde',F(canoni),'pos');sv('fSpese',F(u.tot*12),'neg');sv('fT2',F(imp),'neg');sv('fNetto',F(netto),netto>=0?'pos':'neg');var scList=[{d:'30 giu 2026',v:'Acconto imposta sostitutiva (40%)',i:Math.round(imp*.4)},{d:'30 giu 2026',v:'INPS — I rata',i:Math.round(inps*.25)},{d:'30 set 2026',v:'INPS — II rata',i:Math.round(inps*.25)},{d:'30 nov 2026',v:'Saldo imposta sostitutiva (60%)',i:Math.round(imp*.6)},{d:'30 nov 2026',v:'INPS — III rata',i:Math.round(inps*.25)},{d:'28 feb 2027',v:'INPS — IV rata',i:Math.round(inps*.25)}];var sc=document.getElementById('scad');sc.innerHTML='';scList.forEach(function(s){var d=document.createElement('div');d.className='scad-r';d.innerHTML='<div><div class="scad-d">'+s.d+'</div><div class="scad-v">'+s.v+'</div></div><strong class="neg">'+F(s.i)+'</strong>';sc.appendChild(d);});}
+function renderRoi(){
+  var eA=entAnnoReali(),u=uscite();
+  var iB=_invB||300000, iM=_invM||200000;
+  var half=u.c*12/2;
+  var nB=eA.b-u.b*12-half,nM=eA.m-u.m*12-half;
+  var rB=(nB/iB*100).toFixed(1),rM=(nM/iM*100).toFixed(1);
+  function html(ea,ua,n,r,inv,tgt){
+    return[['Entrate annue',F(ea),'pos'],['Spese annue',F(ua),'neg'],['Netto annuo',F(n),+n>=0?'pos':'neg']].map(function(x){
+      return'<div class="roi-row"><span class="roi-lbl">'+x[0]+'</span><span class="roi-val '+x[2]+'">'+x[1]+'</span></div>';
+    }).join('')
+    +'<div class="roi-row" style="cursor:pointer" onclick="openInvModal(\''+tgt+'\')">'
+    +'<span class="roi-lbl">Investimento ✏️</span>'
+    +'<span class="roi-val neu">'+F(inv)+'</span>'
+    +'</div>'
+    +'<div class="roi-big">'
+    +'<div style="font-size:11px;color:#637083;margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:600">ROI netto lordo</div>'
+    +'<div class="roi-pct" style="color:'+(+r>=0?'var(--green)':'var(--red)')+'">'+Math.abs(r)+'%</div>'
+    +'<div class="roi-sub">rendimento annuo sul capitale immobilizzato</div></div>';
+  }
+  document.getElementById('roiB').innerHTML=html(eA.b,u.b*12+half,nB,rB,iB,'B');
+  document.getElementById('roiM').innerHTML=html(eA.m,u.m*12+half,nM,rM,iM,'M');
+  renderChartRoi();
+}
+function getDati(){return{stanze:stanze,spese:sp,occ:occ,can:can,invB:_invB,invM:_invM,exportDate:new Date().toISOString(),device:navigator.userAgent.indexOf('iPhone')>=0?'iPhone':'PC',v:6};}
+function setDati(d){
+  if(d.stanze)Object.assign(stanze,d.stanze);
+  if(d.spese)Object.assign(sp,d.spese);
+  if(d.occ)Object.assign(occ,d.occ);
+  if(d.occupazione)Object.assign(occ,d.occupazione);
+  if(d.can){
+    Object.assign(can,d.can);
+  } else {
+    // Ricostruisci can da stanze.canone se non salvato
+    ['busto','milano'].forEach(function(prop){
+      stanze[prop].forEach(function(s){
+        if(!can[s.id]) can[s.id]=Array(12).fill(s.canone);
+        else for(var m=0;m<12;m++) if(!can[s.id][m]) can[s.id][m]=s.canone;
+      });
+    });
+  }
+  // Sincronizza sempre can con stanze.canone per i mesi futuri
+  var curM=new Date().getMonth();
+  ['busto','milano'].forEach(function(prop){
+    stanze[prop].forEach(function(s){
+      if(!can[s.id]) can[s.id]=Array(12).fill(s.canone);
+      for(var m=curM+1;m<12;m++) if(can[s.id][m]!==s.canone && !d.can) can[s.id][m]=s.canone;
+    });
+  });
+  if(d.invB){_invB=parseFloat(d.invB)||300000;localStorage.setItem('bm_invB',_invB);}
+  if(d.invM){_invM=parseFloat(d.invM)||200000;localStorage.setItem('bm_invM',_invM);}
+}
+function salva(){cloudSave();try{localStorage.setItem('bm_2026',JSON.stringify(getDati()));}catch(e){}var b=document.getElementById('bSave');b.innerHTML='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Salvato!';b.style.background='var(--gl)';b.style.color='var(--green)';b.style.borderColor='rgba(63,185,80,.3)';setTimeout(function(){b.innerHTML='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Salva';b.style.background='';b.style.color='';b.style.borderColor='';},2000);}
+function esporta(){try{var blob=new Blob([JSON.stringify(getDati(),null,2)],{type:'application/json'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='bm_2026.json';document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},300);}catch(e){prompt('Copia e salva come bm_2026.json',JSON.stringify(getDati()));}}
+function carica(){try{var raw=localStorage.getItem('bm_2026');if(raw)setDati(JSON.parse(raw));}catch(e){}}
+function reset(){if(!confirm('Cancellare tutti i dati?'))return;localStorage.removeItem('bm_2026');location.reload();}
+function render(){renderHome();if(typeof updateHeroKPI==='function')updateHeroKPI();if(curTab==='spese')renderSpese();else if(curTab==='stanze')renderStanze();else if(curTab==='fiscale')renderFiscale();else if(curTab==='roi')renderRoi();}
+(function(){
+  carica();
+  var tabs=document.querySelectorAll('.ntab');
+  function goTab(t){curTab=t;for(var i=0;i<TABS.length;i++){var s=document.getElementById('s-'+TABS[i]);if(s)s.style.display=(TABS[i]===t)?'block':'none';}for(var i=0;i<tabs.length;i++){if(tabs[i].getAttribute('data-t')===t){tabs[i].style.color='var(--cyan)';tabs[i].style.borderBottomColor='var(--cyan)';}else{tabs[i].style.color='var(--text2)';tabs[i].style.borderBottomColor='transparent';}}window.scrollTo(0,0);render();}
+  for(var i=0;i<tabs.length;i++){(function(btn){btn.addEventListener('click',function(e){e.preventDefault();goTab(btn.getAttribute('data-t'));});btn.addEventListener('touchend',function(e){e.preventDefault();e.stopPropagation();goTab(btn.getAttribute('data-t'));});})(tabs[i]);}
+  var seg=document.getElementById('segS');
+  function goSeg(s){curSec=s;var bs=seg.getElementsByTagName('button');for(var i=0;i<bs.length;i++){if(bs[i].getAttribute('data-s')===s){bs[i].style.background='rgba(0,229,255,0.1)';bs[i].style.color='var(--cyan)';}else{bs[i].style.background='none';bs[i].style.color='var(--text2)';}}renderSpese();}
+  seg.addEventListener('click',function(e){var b=e.target.closest('.stab');if(b)goSeg(b.getAttribute('data-s'));});
+  seg.addEventListener('touchend',function(e){e.preventDefault();var b=e.target.closest('.stab');if(b)goSeg(b.getAttribute('data-s'));});
+  document.getElementById('bSave').addEventListener('click',salva);document.getElementById('bSave').addEventListener('touchend',function(e){e.preventDefault();salva();});
+  document.getElementById('bExp').addEventListener('click',esporta);document.getElementById('bExp').addEventListener('touchend',function(e){e.preventDefault();esporta();});
+  document.getElementById('bImp').addEventListener('click',function(){document.getElementById('fIn').click();});document.getElementById('bImp').addEventListener('touchend',function(e){e.preventDefault();document.getElementById('fIn').click();});
+  document.getElementById('fIn').addEventListener('change',function(){var file=this.files[0];if(!file)return;var r=new FileReader();r.onload=function(ev){try{var d=JSON.parse(ev.target.result);setDati(d);salva();render();alert('✅ Importati da: '+(d.device||'?')+' ('+((d.exportDate||'').slice(0,10))+')');}catch(e){alert('Errore: '+e.message);}};r.readAsText(file);});
+  document.getElementById('bReset').addEventListener('click',reset);
+  document.getElementById('sheet').addEventListener('click',function(e){if(e.target===this)closeEdit();});
+  document.getElementById('shAnn').addEventListener('click',closeEdit);document.getElementById('shSav').addEventListener('click',saveEdit);document.getElementById('shDel').addEventListener('click',delSpesa);
+  ['affB','nB','mutB','affM','nM'].forEach(function(id){var e=document.getElementById(id);if(e){e.addEventListener('change',function(){if(id==='mutB'){var r=null;for(var j=0;j<gSp('busto').length;j++)if(gSp('busto')[j].voce==='Rata mutuo bancario'){r=gSp('busto')[j];break;}if(r)r.prev=parseFloat(e.value)||0;}render();});e.addEventListener('input',function(){render();});}});
+  document.addEventListener('change',function(e){var t=e.target;if(t.dataset.p&&t.dataset.f){var f=t.dataset.f,p=t.dataset.p,i=parseInt(t.dataset.i);if(f==='canone'){var v=parseFloat(t.value)||0;stanze[p][i].canone=v;var sid=stanze[p][i].id;if(!can[sid])can[sid]=Array(12).fill(v);var nextM=new Date().getMonth()+1;for(var m=nextM;m<12;m++)can[sid][m]=v;salva();render();}else{stanze[p][i][f]=t.value;salva();}}if(t.id==='fCons'||t.id==='fInps')renderFiscale();});
+  document.addEventListener('click',function(e){var btn=e.target.closest('.sbtn');if(btn){var p=btn.getAttribute('data-p'),i=parseInt(btn.getAttribute('data-i'));stanze[p][i].occupata=!stanze[p][i].occupata;for(var m=0;m<12;m++)occ[stanze[p][i].id][m]=stanze[p][i].occupata?1:0;renderStanze();renderHome();return;}var td=e.target.closest('td[data-id]');if(td){var id=td.getAttribute('data-id'),m=parseInt(td.getAttribute('data-m'));occ[id][m]=occ[id][m]?0:1;var haOcc=occ[id].some(function(v){return v;});['busto','milano'].forEach(function(p){stanze[p].forEach(function(s){if(s.id===id)s.occupata=haOcc;});});renderStanze();renderHome();}});
+  render();
+  setTimeout(function(){render();},300);
+  setTimeout(function(){render();},800);
+})();
+
+
+// ═══════════════════════════════════════════════
+// SYNC — Cloudflare Workers
+// https://odd-sun-2a8b.fabiosolari13.workers.dev = URL del tuo Worker dopo la creazione
+// ═══════════════════════════════════════════════
+var CF_URL = 'https://odd-sun-2a8b.fabiosolari13.workers.dev';
+
+function showSyncBadge(state, msg) {
+  var badge = document.getElementById('syncBadge');
+  if (!badge) return;
+  var colors = {
+    saving:  ['#e3b341','#06090f'],
+    loading: ['#58a6ff','#06090f'],
+    ok:      ['#3fb950','#06090f'],
+    error:   ['#f85149','#fff']
+  };
+  var c = colors[state] || ['#8b949e','#fff'];
+  badge.style.background = c[0];
+  badge.style.color = c[1];
+  badge.textContent = msg;
+  badge.style.display = 'inline-flex';
+  if (state === 'ok' || state === 'error') {
+    setTimeout(function(){ badge.style.display = 'none'; }, 3000);
+  }
+}
+
+function impostaToken() {
+  alert('Con Cloudflare Workers non serve piu il token GitHub. I dati sono sincronizzati automaticamente!');
+}
+
+function cloudSave() {
+  showSyncBadge('saving', '↑ Salvataggio...');
+  var dati = getDati();
+  fetch(CF_URL + '/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dati)
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(d) {
+    if (d.ok) {
+      showSyncBadge('ok', '✓ Sincronizzato');
+      try { localStorage.setItem('bm_2026', JSON.stringify(dati)); } catch(e) {}
+    } else {
+      showSyncBadge('error', '✗ ' + (d.error || 'Errore'));
+    }
+  })
+  .catch(function() {
+    try { localStorage.setItem('bm_2026', JSON.stringify(getDati())); } catch(e) {}
+    showSyncBadge('error', '✗ Offline (salvato locale)');
+  });
+}
+
+function cloudLoad() {
+  showSyncBadge('loading', '↓ Caricamento...');
+  fetch(CF_URL + '/load')
+  .then(function(r) { return r.json(); })
+  .then(function(d) {
+    if (d.ok && d.data) {
+      setDati(d.data);
+      render();
+      showSyncBadge('ok', '✓ Aggiornato');
+      try { localStorage.setItem('bm_2026', JSON.stringify(d.data)); } catch(e) {}
+    } else {
+      var raw = localStorage.getItem('bm_2026');
+      if (raw) { setDati(JSON.parse(raw)); render(); }
+      showSyncBadge('ok', '✓ Dati locali');
+    }
+  })
+  .catch(function() {
+    try {
+      var raw = localStorage.getItem('bm_2026');
+      if (raw) { setDati(JSON.parse(raw)); render(); }
+    } catch(e) {}
+    showSyncBadge('error', '✗ Offline');
+  });
+}
+
+// Carica al primo avvio
+(function() {
+  if (CF_URL === 'https://odd-sun-2a8b.fabiosolari13.workers.dev') {
+    var raw = localStorage.getItem('bm_2026');
+    if (raw) { try { setDati(JSON.parse(raw)); render(); } catch(e) {} }
+    showSyncBadge('error', '⚠ Worker non configurato');
+    return;
+  }
+  cloudLoad();
+})();
+
+
+function toggleThemeBM(){
+  var cur=document.documentElement.getAttribute('data-theme')||'light';
+  var next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  document.body.setAttribute('data-theme',next);
+  localStorage.setItem('bm_theme',next);
+  setTimeout(function(){renderHome();if(typeof renderRoi==='function')renderRoi();},50);
+  var btn=document.getElementById('bTheme');
+  if(btn) btn.innerHTML=next==='dark'
+    ?'<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Tema'
+    :'<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> Tema';
+}
+// Init tema salvato
+(function(){
+  var saved=localStorage.getItem('bm_theme')||'light';
+  document.documentElement.setAttribute('data-theme',saved);
+  document.body.setAttribute('data-theme',saved);
+})();
+</script>
+
+<!-- MODAL INVESTIMENTO ROI -->
+<div id="invModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center">
+  <div style="background:var(--s1);border:1px solid var(--border2);border-radius:16px;padding:24px;width:300px;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,0.3)">
+    <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px" id="invModalTitle">✏️ Modifica Investimento</div>
+    <div style="font-size:11px;color:var(--text2);margin-bottom:16px" id="invModalSub"></div>
+    <div style="margin-bottom:20px">
+      <label style="font-size:11px;color:var(--text2);font-weight:600;display:block;margin-bottom:6px">Valore investimento (€)</label>
+      <input type="number" id="invSingle_modal" style="width:100%;padding:12px 14px;background:var(--s2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:22px;font-family:inherit;font-weight:700">
+    </div>
+    <div style="display:flex;gap:8px">
+      <button onclick="closeInvModal()" style="flex:1;padding:10px;background:var(--s3);border:1px solid var(--border);border-radius:8px;color:var(--text2);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer">Annulla</button>
+      <button onclick="saveInvModal()" style="flex:1;padding:10px;background:var(--blue);border:none;border-radius:8px;color:#fff;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">Salva</button>
+    </div>
+  </div>
+</div>
+<script>
+// Carica valori salvati o usa default
+var _invB=parseFloat(localStorage.getItem('bm_invB'))||300000;
+var _invM=parseFloat(localStorage.getItem('bm_invM'))||200000;
+var _invTarget='B';
+
+function openInvModal(target){
+  _invTarget=target||'B';
+  var isB=_invTarget==='B';
+  document.getElementById('invModalTitle').textContent=(isB?'🏠':'🏢')+' Modifica Investimento';
+  document.getElementById('invModalSub').textContent=isB?'Busto — Via Gussoni 1':'Milano — Via Giussani 15';
+  document.getElementById('invSingle_modal').value=isB?_invB:_invM;
+  document.getElementById('invModal').style.display='flex';
+  setTimeout(function(){
+    var inp=document.getElementById('invSingle_modal');
+    inp.focus(); inp.select();
+  },80);
+}
+function closeInvModal(){
+  document.getElementById('invModal').style.display='none';
+}
+function saveInvModal(){
+  var v=parseFloat(document.getElementById('invSingle_modal').value)||0;
+  if(!v){alert('Inserisci un valore valido');return;}
+  if(_invTarget==='B'){
+    _invB=v;
+    localStorage.setItem('bm_invB',v);
+  } else {
+    _invM=v;
+    localStorage.setItem('bm_invM',v);
+  }
+  closeInvModal();
+  renderRoi();
+  // Salva anche sul cloud
+  if(typeof salva==='function') salva();
+}
+// Chiudi cliccando fuori o premendo Escape/Invio
+document.getElementById('invModal').addEventListener('click',function(e){if(e.target===this)closeInvModal();});
+document.getElementById('invSingle_modal').addEventListener('keydown',function(e){
+  if(e.key==='Enter') saveInvModal();
+  if(e.key==='Escape') closeInvModal();
+});
+</script>
+</body>
+</html>
